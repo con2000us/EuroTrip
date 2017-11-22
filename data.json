@@ -1,0 +1,14 @@
+[
+	{"title": "大獎", "expanded": true, "folder": true, "children": [
+		{"title": "草薙京", "img":"img/1572i.png", "w": 6},
+		{"title": "八神庵", "img":"img/1575i.png", "w": 3},
+		{"title": "不知火舞", "img":"img/1576i.png", "w": 6}
+	]},
+	{"title": "肥婆", "expanded": true, "folder": true, "children": [
+		{"title": "泰瑞", "img":"img/1577i.png", "w": 17},
+		{"title": "金家藩", "img":"img/1573i.png", "w": 17},
+		{"title": "紅丸", "img":"img/1574i.png", "w": 17},
+		{"title": "雅典娜", "img":"img/1578i.png", "w": 17},
+		{"title": "椎拳崇", "img":"img/1571i.png", "w": 17}
+	]}
+]
