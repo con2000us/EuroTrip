@@ -198,6 +198,22 @@ function event_binding(){
 	$('#btn_par').click(function(event) {
 		prepPool = lotteryPrep(tableData);
 		targetPool = new Array();
+		for(var i=0;i<prepPool.length;i++){
+			var w = parseFloat($('#input_w'+prepPool[i].key).val());
+			if(w == 0 || isNaN(w)){
+				$("#showResult").text('項目：'+prepPool[i].title+' 權重設定有誤');
+				$("#showResult").dialog({
+					modal: true,
+					title: '提示',
+					buttons: {
+						Ok: function() {
+							$( this ).dialog( "close" );
+						}
+					}
+				});
+				return;
+			}
+		}
 		$.each(prepPool, function(index, val) {
 			addPool(val, 'copy');
 		});
@@ -298,7 +314,7 @@ function event_binding(){
 		for(var i=0;i<=accuData.limit;i++){
 			accuData.hist[i] = 0;
 		}
-		timerID = window.setInterval(slice_hist, 100,100,2000);
+		timerID = window.setInterval(slice_hist, 120,100,2000);
 	});
 
 	$('#btn_reload').click(function(event) {
@@ -823,6 +839,21 @@ function treeNode_command(cmd){
 	switch( cmd ) {
 		case "addpool":
 			var counter = 0;
+			var nodeW = parseFloat($('#input_w'+node.key).val());
+			if(nodeW == 0 || isNaN(nodeW)){
+				$("#showResult").text('項目權重設定有誤');
+				$("#showResult").dialog({
+					modal: true,
+					title: '提示',
+					buttons: {
+						Ok: function() {
+							$( this ).dialog( "close" );
+						}
+					}
+				});
+				return;
+			}
+			console.log(nodeW);
 			while(counter < tableData.length && node.key != tableData[counter].node.key){
 				counter++;
 			}
