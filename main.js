@@ -123,7 +123,7 @@ $(document).ready(function() {
 		});
 	});
 
-	$('#sel_file').val('flower.json');
+	$('#sel_file').val('kof.json');
 
 
 	$.when(loadData($('#sel_file').val())).then(function(){
