@@ -28,7 +28,7 @@
 
 	<style>
 		table.fancytree-ext-table tbody tr.fancytree-active{
-			background-color: rgba(0,0,0,0.15); !important;
+			background-color: rgba(0,0,0,0.1); !important;
 		}
 
 		.ui-menu {
@@ -146,9 +146,10 @@
 		<div class="container">
 			<p>
 				<h3>卡池選擇
-				<select>
-					<option>卡池選擇</option>
-					<option>ToS拳皇卡池</option>
+				<select id="sel_file">
+					<option value="">卡池選擇</option>
+					<option value="kof.json">ToS拳皇卡池</option>
+					<option value="flower.json">ToS荊棘花園卡池</option>
 				</select>
 				</h2>
 				<input type="file" id="file" name="file" /><br />
@@ -212,9 +213,10 @@
 					<div class="shadowbox div_resultcontainer" style="border: 1px solid rgba(1,1,1,0.7); min-height: 9em;margin:-1px" id="resultcontainer">
 					</div>
 				</div>
-			</p>
-			<span id="span_running"></span><br>
-			<div id="div_resultCanvas" class="div_resultCanvas shadowbox"></div>
+				<p></p>
+				<span id="span_running"></span><br>
+				<div id="div_resultCanvas" class="div_resultCanvas shadowbox"></div>
+			</p>			
 		</div>
 		<br>		
 	</p>

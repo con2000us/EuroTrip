@@ -24,16 +24,42 @@ $(document).ready(function() {
 	showResult_speed = 100;
 	zipImgProc = 0;
 	tablePatten = $('#tree_container').html();
-	$.when(loadData("data.json")).then(function(){
-		dataSourceType = 1;
-		init_json();
-		jsonDataSetup();
+	$('#sel_file').change(function(event) {
+		if($(this).val() !== ''){
+			$.when(loadData($(this).val())).then(function(){
+				dataSourceType = 1;
+				targetPool = new Array();
+				
+				refreshContainer(targetPool);
+				reloadTree();
+
+				var tree = $("#tree").fancytree("getTree");
+				tableData = new Array();
+				gcount = 0;
+				getList(tableData, "root", tree.rootNode, 0);
+
+				ImgData = new Array();
+				ImgDataMap = new Array();
+				$.each(tableData, function(index, val) {
+					if(val.exp == 'n' && val.img !== null){
+						toDataURL(val.img, function(dataUrl) {
+							imgObj = new Object();
+							imgObj.title = val.title;
+							imgObj.url = val.img;
+							imgObj.b64 = dataUrl;
+							ImgDataMap[imgObj.url] = ImgData.length;
+							ImgData.push(imgObj);
+						})
+					}
+				});
+
+				$('#span_running').hide();
+				$('#div_resultCanvas').hide();
+				$('#resultcontainerWrapper').hide();
+			});
+		}
 	});
-
-	// toDataURL('http://strong-foot.com/euro/img/1571i.png', function(dataUrl) {
-	// 	console.log('RESULT:', dataUrl);
-	// })
-
+	
 	$("#file").on("change", function(evt) {
 		// Closure to capture the file information.
 		dataSourceType = 2;
@@ -42,7 +68,6 @@ $(document).ready(function() {
 			zipJSON = null;
 			ImgData = new Array();
 			ImgDataMap = new Array();
-			var dateBefore = new Date();
 			JSZip.loadAsync(f)                                   // 1) read the Blob
 			.then(function(zip) {
 				zip.forEach(function (relativePath, zipEntry) {  // 2) print entries
@@ -98,6 +123,21 @@ $(document).ready(function() {
 		});
 	});
 
+	$('#sel_file').val('flower.json');
+
+
+	$.when(loadData($('#sel_file').val())).then(function(){
+		dataSourceType = 1;
+		targetPool = new Array();
+		
+		init_json();
+		event_binding();
+		refreshContainer(targetPool);
+		
+		$('#span_running').hide();
+		$('#div_resultCanvas').hide();
+		$('#resultcontainerWrapper').hide();
+	});
 	setInterval(function(){normalize()}, 300);
 });
 
@@ -122,6 +162,7 @@ function init_json(){
 	tableData = new Array();
 	gcount = 0;
 	getList(tableData, "root", tree.rootNode, 0);
+
 	if(dataSourceType == 1){
 		ImgData = new Array();
 		$.each(tableData, function(index, val) {
@@ -137,7 +178,6 @@ function init_json(){
 			}
 		});
 	}
-	normalize();
 	prepPool = lotteryPrep(tableData);
 }
 
@@ -148,7 +188,7 @@ function reloadTree(){
 	treeSetup();	
 }
 
-function jsonDataSetup(){	
+function event_binding(){	
 
 	$('#btn_clearTarget').click(function(event) {
 		targetPool = new Array();
@@ -183,17 +223,6 @@ function jsonDataSetup(){
 		}else{
 			node = $("#tree").fancytree("getRootNode");
 			node.editCreateNode("child", {title: "", folder: true });
-		}
-		reloadTableData();
-	});
-
-	$('#btn_newFolder').click(function(event) {
-		var node = $("#tree").fancytree("getActiveNode");
-		if(node){
-			node.editCreateNode("after", {title: "", folder: false });
-		}else{
-			node = $("#tree").fancytree("getRootNode");
-			node.editCreateNode("child", {title: "", folder: false });
 		}
 		reloadTableData();
 	});
@@ -301,7 +330,8 @@ function treeSetup(){
 			},
 			dragEnter: function(node, data) {
 				// return ["before", "after"];
-				if(node.expanded){
+				console.log(node);
+				if(node.folder){
 					return true;	
 				}else{
 					return ["before", "after"];
@@ -362,7 +392,7 @@ function treeSetup(){
 			var node = data.node,
 			$tdList = $(node.tr).find(">td");
 			// (Index #0 is rendered by fancytree by adding the checkbox)
-			if(!node.folder || true){
+			if(!node.folder){
 				if(!node.data.w){
 					node.data.w = 0;
 				}

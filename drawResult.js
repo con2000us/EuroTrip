@@ -53,7 +53,6 @@ function drawHisto(data){
 	while(overContainer.children.length > 0){
 		overContainer.removeChild(overContainer.children[0]);
 	}
-
 	
 
 	//histogram drawing
@@ -65,9 +64,13 @@ function drawHisto(data){
 	var heightRatio = data.current/(data.max*1.1);
 	histographics.moveTo(50,dh-50);
 
+	var widthRatio = Math.floor(interval/dw);
+
 	for(var i=0;i<=data.rightBound-data.leftBound;i++){
 		histographics.lineTo(50+(dw-100)*i/interval,dh-50-(dh-100)*heightRatio*data.hist[i+data.leftBound]/data.current);
+		i += widthRatio;
 	}
+	histographics.lineTo(50+(dw-100)*(data.rightBound-data.leftBound)/interval,dh-50-(dh-100)*heightRatio*data.hist[data.rightBound]/data.current);
 	histographics.lineTo(50+(dw-100),dh-50);
 	histographics.lineTo(50,dh-50);
 
@@ -204,9 +207,13 @@ function drawHover(e){
 		var heightRatio = accuData.current/(accuData.max*1.1);
 		overHistographics.moveTo(50,dh-50);
 
+		var widthRatio = Math.floor(interval/dw);
+
 		for(var i=0;i<=currentUnit-accuData.leftBound;i++){
 			overHistographics.lineTo(50+(dw-100)*i/interval,dh-50-(dh-100)*heightRatio*accuData.hist[i+accuData.leftBound]/accuData.current);
+			i += widthRatio;
 		}
+		overHistographics.lineTo(50+(dw-100)*(currentUnit-accuData.leftBound)/interval,dh-50-(dh-100)*heightRatio*accuData.hist[accuData.rightBound]/accuData.current);
 		overHistographics.lineTo(50+(dw-100)*(currentUnit-accuData.leftBound)/interval,dh-50);
 		overHistographics.lineTo(50,dh-50);
 
