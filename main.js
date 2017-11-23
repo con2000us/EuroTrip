@@ -853,7 +853,6 @@ function treeNode_command(cmd){
 				});
 				return;
 			}
-			console.log(nodeW);
 			while(counter < tableData.length && node.key != tableData[counter].node.key){
 				counter++;
 			}
@@ -910,15 +909,30 @@ function treeNode_command(cmd){
 		break;
 
 		case "remove":
-			refNode = node.getNextSibling() || node.getPrevSibling() || node.getParent();
-			node.remove();
-			if( refNode ) {
-				refNode.setActive();
-			}
-			targetPool = new Array();
-			refreshContainer(targetPool);
-			reloadTableData();
-			normalize();
+			$("#dialog-confirm").html("確定要刪除項目"+node.title+"?");
+			$("#dialog-confirm").dialog({
+				resizable: false,
+				height: "auto",
+				width: 400,
+				modal: true,
+				buttons: {
+					"取消": function() {
+						$( this ).dialog( "close" );
+					},
+					"確定": function() {
+						refNode = node.getNextSibling() || node.getPrevSibling() || node.getParent();
+						node.remove();
+						if( refNode ) {
+							refNode.setActive();
+						}
+						targetPool = new Array();
+						refreshContainer(targetPool);
+						reloadTableData();
+						normalize();
+						$( this ).dialog( "close" );
+					}
+				}
+			});
 			break;
 		case "addChild":
 			node.editCreateNode("child", "");
