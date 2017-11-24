@@ -22,7 +22,7 @@ var mr;
 
 $(document).ready(function() {
 	mr = new MersenneTwister();
-	drawLimit = 5000;
+	drawLimit = 9999;
 	showResult_speed = 100;
 	zipImgProc = 0;
 	tablePatten = $('#tree_container').html();
