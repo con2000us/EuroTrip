@@ -703,8 +703,8 @@ function lotteryPrep(pool){
 }
 
 function single_pick(pool){
-	//var L = Math.random()*100;		//chrome亂數不夠平均
-	var L = mr.random()*100;			//第三方亂數產生器
+	var L = Math.random()*100;		//chrome亂數不夠平均
+	//var L = mr.random()*100;			//第三方亂數產生器
 	var sum = 0.0;
 	var counter = 0;
 	while(sum < L){
