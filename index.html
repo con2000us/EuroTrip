@@ -4,6 +4,7 @@
 	<meta charset="UTF-8">
 	<title>歐皇血統計算機</title>
 
+	<link rel="shortcut icon" href="favicon.ico">
 	<link href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet">
 	<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
@@ -23,10 +24,18 @@
 	<script src="lib/jquery.fancytree.gridnav.js"></script>
 	<script src="lib/jquery.fancytree.table.js"></script>
 	<script src="lib/zip/jszip.min.js"></script>
+	<script src="lib/mersenne-twister.js"></script>
 	<script src="main.js"></script>
 	<script src="drawResult.js"></script>
 
 	<style>
+		body{
+			background-image: url("img/bk.jpg");
+			background-repeat: no-repeat;
+			background-size: cover;
+			background-attachment: fixed;
+		}
+
 		table.fancytree-ext-table tbody tr.fancytree-active{
 			background-color: rgba(0,0,0,0.1); !important;
 		}
@@ -132,6 +141,7 @@
 			border: 1px solid;
 			display: block;
 			height: 500px;
+			margin-bottom: 2em;
 			background: #fceabb; /* Old browsers */
 			background: -moz-linear-gradient(top, #fceabb 0%, #fccd4d 50%, #f8b500 51%, #fbdf93 100%); /* FF3.6-15 */
 			background: -webkit-linear-gradient(top, #fceabb 0%,#fccd4d 50%,#f8b500 51%,#fbdf93 100%); /* Chrome10-25,Safari5.1-6 */
@@ -143,30 +153,31 @@
 </head>
 <body>
 	<p>
-		<div class="container">
-			<p>
-				<h3>卡池選擇
-				<select id="sel_file">
-					<option value="">卡池選擇</option>
-					<option value="kof.json">ToS拳皇卡池</option>
-					<option value="flower.json">ToS荊棘花園卡池</option>
-				</select>
-				</h2>
-				<input type="file" id="file" name="file" /><br />
-				<!-- <button id="btn_reload">json reload</button> -->
-				<button id="btn_newFolder">新增分類</button>
-				<button id="btn_newItem">新增項目</button>
-			</p>
+		<div class="container" style="background-color: rgba(250,250,250,0.85);">
+			<h4>資料來源
+			<select id="sel_file" class="form-control" style="width: initial;display: inline-block;">
+				<option value="">卡池選擇</option>
+				<option value="kof.json">ToS拳皇卡池</option>
+				<option value="flower.json">ToS荊棘花園卡池</option>
+			</select>
+			<label class="btn btn-default" style="margin-top: 2px;">
+				上傳檔案 <input type="file" id="file" style="display: none;">
+			</label>
+			</h4>
+			<br/>
+			<!-- <button id="btn_reload">json reload</button> -->
+			<button id="btn_newFolder" class="btn btn-info">新增分類</button>
+			<button id="btn_newItem" class="btn btn-info">新增項目</button>
 			
 			<!-- <div id="tree" style="outline:none !important;"></div> -->
 			<span id="tree_container">
 				<table id="tree">
 					<colgroup>
-					<col width="0px">
-					<col width="250px">
-					<col width="50px">
-					<col width="50px">
-					<col width="120px">
+						<col width="0px">
+						<col width="250px">
+						<col width="50px">
+						<col width="50px">
+						<col width="120px">
 					</colgroup>
 					<thead>
 					  <tr> <th></th><th>卡片</th> <th class="alignCenter">權重</th> <th class="alignCenter">整體%</th> <th class="alignCenter">操作</th></tr>
@@ -194,8 +205,8 @@
 			<p>
 				<br>
 				<br>
-				<button id="btn_par">各抽一張</button>
-				<button id="btn_clearTarget">清空</button>
+				<button id="btn_par"  class="btn btn-primary">各抽一張</button>
+				<button id="btn_clearTarget"  class="btn btn-primary">清空</button>
 
 				<div class="div_itemcontainer shadowbox" style="border: 1px solid rgba(1,1,1,0.7); min-height: 9em;" id="itemcontainer">
 					<div class="div_containertag" style="border: 1px solid rgba(1,1,1,0.7);"><span class="span_itemName">目標池</span></div>
@@ -205,8 +216,8 @@
 					</div> -->
 				</div>
 				<br>
-				<button id="btn_pick">畢業試抽</button>
-				<button id="btn_histo">模擬Go</button>
+				<button id="btn_pick" class="btn btn-warning">畢業試抽</button>
+				<button id="btn_histo" class="btn btn-warning">模擬Go</button>
 				<!-- 計算<input type="text" id="input_lastTime" size="2" value="5" style="text-align: right;">秒　 -->
 				<div style="margin-top:4.2em;display: none;" id="resultcontainerWrapper">
 					<div class="div_containertag" style="border: 1px solid rgba(1,1,1,0.7); background-color: antiquewhite"><span class="span_itemName">試抽結果</span></div>

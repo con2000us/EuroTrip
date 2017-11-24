@@ -13,17 +13,21 @@ var drawLimit;			//單次抽卡次數上限
 
 var gcount;				//index計算變數
 var showResult_speed;	//抽獎顯示方式 1:動畫, 2:即時
-var dataSourceType;		// 1. 從DB, 2. 從file
+var dataSourceType;		// 1. 從local, 2. 從file
 var ImgData, ImgDataMap;
 var zipJSON, zipImgProc;
+var threadLock,interrupt;
+var mr;
 
 
 $(document).ready(function() {
-
+	mr = new MersenneTwister();
 	drawLimit = 5000;
 	showResult_speed = 100;
 	zipImgProc = 0;
 	tablePatten = $('#tree_container').html();
+	threadLock = true;
+	interrupt = false;
 	$('#sel_file').change(function(event) {
 		if($(this).val() !== ''){
 			$.when(loadData($(this).val())).then(function(){
@@ -192,12 +196,14 @@ function event_binding(){
 
 	$('#btn_clearTarget').click(function(event) {
 		targetPool = new Array();
+		interrupt = true;
 		refreshContainer(targetPool);
 	});
 
 	$('#btn_par').click(function(event) {
 		prepPool = lotteryPrep(tableData);
 		targetPool = new Array();
+		interrupt = true;
 		for(var i=0;i<prepPool.length;i++){
 			var w = parseFloat($('#input_w'+prepPool[i].key).val());
 			if(w == 0 || isNaN(w)){
@@ -217,7 +223,7 @@ function event_binding(){
 		$.each(prepPool, function(index, val) {
 			addPool(val, 'copy');
 		});
-		refreshContainer(targetPool);
+		refreshContainer(targetPool);		
 	});
 
 	$('#btn_newItem').click(function(event) {
@@ -314,6 +320,8 @@ function event_binding(){
 		for(var i=0;i<=accuData.limit;i++){
 			accuData.hist[i] = 0;
 		}
+		threadLock = false;
+		interrupt = false;
 		timerID = window.setInterval(slice_hist, 120,100,2000);
 	});
 
@@ -664,6 +672,7 @@ function refreshContainer(pool){
 		ele = $(makeItemURL(pool[i],cssStr));
 		$('#itemcontainer').append(ele);
 	}
+	interrupt = true;
 }
 
 function reloadTableData(){
@@ -694,8 +703,9 @@ function lotteryPrep(pool){
 }
 
 function single_pick(pool){
-	var L = Math.random()*100;
-	var sum = 0;
+	//var L = Math.random()*100;		//chrome亂數不夠平均
+	var L = mr.random()*100;			//第三方亂數產生器
+	var sum = 0.0;
 	var counter = 0;
 	while(sum < L){
 		sum += pool[counter].p;
@@ -707,13 +717,18 @@ function single_pick(pool){
 
 function prepMatch(){
 	targetPoolDirty = new Array;
-	$.each(targetPool, function(index, val) {
-		targetPoolDirty[index] = 0;		
-	});
 
-	$.each(prepPool, function(index, val) {
-		prepPool[index].dirty = 0;
-	});
+	for(var i=0;i<targetPool.length;i++){
+		targetPoolDirty[i] = 0;
+	}
+
+	for(var i=0;i<prepPool.length;i++){
+		if(prepPool[i].dirty != 0){
+			prepPool[i].dirty = 0;
+		}
+	}
+
+
 }
 
 function targetMatch(node, dataPool){
@@ -733,13 +748,18 @@ function targetMatch(node, dataPool){
 }
 
 function slice_hist(peroid, loops){
-
+	if(threadLock == true){
+		return;
+	}
+	threadLock = true;
+	accuData.past = accuData.current;
+	accuData.pastTime = Date.now();
 	if(targetPool.length > 0){
 		var sum = 0;
 		var tryNum = 0;
 		if(peroid > 0){
-			startT = (new Date).getTime();
-			while(startT + peroid*0.8 > (new Date).getTime()){
+			startT = Date.now();
+			while(startT + peroid*0.9 > Date.now() && !interrupt){
 				sum = 0;
 				tryNum = 0;					
 				prepMatch();
@@ -751,7 +771,7 @@ function slice_hist(peroid, loops){
 				accuData.current++;
 			}
 		}else{
-			for(i=0;i<loops;i++){			
+			for(var i=0;i<loops;i++){			
 				sum = 0;
 				tryNum = 0;					
 				prepMatch();
@@ -766,11 +786,19 @@ function slice_hist(peroid, loops){
 
 	}
 	drawHisto(accuData);
-	if((accuData.stopType == 'repeat' && accuData.current >= accuData.max) || (accuData.stopType == 'time' && accuData.maxTime > 0 && (new Date).getTime() > accuData.startTime + accuData.maxTime)){
+	if((accuData.stopType == 'repeat' && accuData.current >= accuData.max) || (accuData.stopType == 'time' && accuData.maxTime > 0 && Date.now() > accuData.startTime + accuData.maxTime)){
 		clearTimeout(timerID);
 		showResult(accuData);
 	}
-	//console.log(accuData);
+	if(interrupt){
+		clearTimeout(timerID);
+		accuData.maxTime = 0;
+		backgraphics.interactive = true;
+		$('#btn_histo').text('模擬Go');
+		$('#btn_pick').prop('disabled', false);
+	}
+	//console.log(accuData.current - accuData.past);
+	threadLock = false;
 }
 
 function refreshResult(pool){
@@ -853,6 +881,7 @@ function treeNode_command(cmd){
 				});
 				return;
 			}
+			interrupt = true;
 			while(counter < tableData.length && node.key != tableData[counter].node.key){
 				counter++;
 			}
@@ -929,6 +958,7 @@ function treeNode_command(cmd){
 						refreshContainer(targetPool);
 						reloadTableData();
 						normalize();
+						interrupt = true;
 						$( this ).dialog( "close" );
 					}
 				}
