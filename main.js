@@ -25,6 +25,8 @@ $(document).ready(function() {
 	drawLimit = 9999;
 	showResult_speed = 100;
 	zipImgProc = 0;
+	//random = function(){return Math.random()};		//亂數產生方式
+	random = function(){return mr.random()};
 	tablePatten = $('#tree_container').html();
 	threadLock = true;
 	interrupt = false;
@@ -702,9 +704,8 @@ function lotteryPrep(pool){
 	return pPool;
 }
 
-function single_pick(pool){
-	var L = Math.random()*100;		//chrome亂數不夠平均
-	//var L = mr.random()*100;			//第三方亂數產生器
+function single_pick(pool){	
+	var L = random()*100;
 	var sum = 0.0;
 	var counter = 0;
 	while(sum < L){
@@ -811,7 +812,6 @@ function refreshResult(pool){
 }
 
 function poolCheck(node, pool){	//檢查加入的node是否合理
-
 	//複製targetPool
 	var tPool = new Array();
 	for (var i=0;i<pool.length;i++) {
@@ -867,19 +867,38 @@ function treeNode_command(cmd){
 	switch( cmd ) {
 		case "addpool":
 			var counter = 0;
-			var nodeW = parseFloat($('#input_w'+node.key).val());
-			if(nodeW == 0 || isNaN(nodeW)){
-				$("#showResult").text('項目權重設定有誤');
-				$("#showResult").dialog({
-					modal: true,
-					title: '提示',
-					buttons: {
-						Ok: function() {
-							$( this ).dialog( "close" );
-						}
+			if(node.folder){
+				for(var i=0;i<node.children.length;i++){
+					var nodeW = parseFloat($('#input_w'+node.children[i].key).val());
+					if(nodeW == 0 || isNaN(nodeW)){
+						$("#showResult").text('項目：'+node.children[i].title+'權重設定有誤');
+						$("#showResult").dialog({
+							modal: true,
+							title: '提示',
+							buttons: {
+								Ok: function() {
+									$( this ).dialog( "close" );
+								}
+							}
+						});
+						return;
 					}
-				});
-				return;
+				}
+			}else{
+				var nodeW = parseFloat($('#input_w'+node.key).val());
+				if(nodeW == 0 || isNaN(nodeW)){
+					$("#showResult").text('項目權重設定有誤');
+					$("#showResult").dialog({
+						modal: true,
+						title: '提示',
+						buttons: {
+							Ok: function() {
+								$( this ).dialog( "close" );
+							}
+						}
+					});
+					return;
+				}
 			}
 			interrupt = true;
 			while(counter < tableData.length && node.key != tableData[counter].node.key){
