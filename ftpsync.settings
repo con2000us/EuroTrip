@@ -4,7 +4,7 @@
 
 	"default": {
 
-		"host": "192.168.0.100",
+		"host": "strong-foot.com",
 		"username": "strongfoot",  // or null for anonymous login
 		"password": "tkkca.2017",
 		"path": "/var/www/euro",

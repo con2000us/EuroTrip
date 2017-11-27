@@ -25,8 +25,8 @@ $(document).ready(function() {
 	drawLimit = 9999;
 	showResult_speed = 100;
 	zipImgProc = 0;
-	//random = function(){return Math.random()};		//亂數產生方式
-	random = function(){return mr.random()};
+	random = function(){return Math.random()};		//亂數產生方式
+	//random = function(){return mr.random()};
 	tablePatten = $('#tree_container').html();
 	threadLock = true;
 	interrupt = false;
