@@ -129,8 +129,23 @@ $(document).ready(function() {
 		});
 	});
 
-	$('#sel_file').val('kof.json');
+	$('#btn_newJson').click(function(event) {
+		$('#showJson').dialog({
+			height: 500,
+			width: 900,
+			title: 'JSON資料欄',
+			resizable: true,
+			draggable: true,
+			modal: true,
+			buttons: {
+				完成: function() {
+					$( this ).dialog( "close" );
+				}
+			}
+		});
+	});
 
+	$('#sel_file').val('kof.json');
 
 	$.when(loadData($('#sel_file').val())).then(function(){
 		dataSourceType = 1;
@@ -327,13 +342,13 @@ function event_binding(){
 		timerID = window.setInterval(slice_hist, 120,100,2000);
 	});
 
-	$('#btn_reload').click(function(event) {
-		$.when(loadData("data.json")).then(function(){
-			reloadTree();
-			targetPool = new Array();
-			refreshContainer(targetPool);
-		});
-	});
+	// $('#btn_reload').click(function(event) {
+	// 	$.when(loadData("data.json")).then(function(){
+	// 		reloadTree();
+	// 		targetPool = new Array();
+	// 		refreshContainer(targetPool);
+	// 	});
+	// });
 }
 
 function treeSetup(){
@@ -396,27 +411,42 @@ function treeSetup(){
 			// Span the remaining columns if it's a folder.
 			// We can do this in createNode instead of renderColumns, because
 			// the `isFolder` status is unlikely to change later
-			if(node.isFolder() ) {
-				// $tdList.eq(2)
-				// .prop("colspan", 6)
-				// .nextAll().remove();
-				$tdList.eq(2).text("");
-				$tdList.eq(3).text("");
-			}else{
-
-			}
-			var $select = $tdList.eq(4).children().eq(0)
+			// if(node.isFolder() ) {
+			// 	// $tdList.eq(2)
+			// 	// .prop("colspan", 6)
+			// 	// .nextAll().remove();
+			// 	$tdList.eq(2).text("");
+			// 	$tdList.eq(3).text("");
+			// }
+			var $select = $tdList.eq(4).children().eq(0);
+			
 			$select.prop('id','sel_op'+node.key);
 			$select.attr('key',node.key);
 
 			$select.change(node.key, function(event) {
 				sel_op(event.data);
 			});
+			$tdList.click($select,function(event) {
+				$tdList.trigger('mouseover',$select);
+			});
+
+			$tdList.mouseover($select,function(event) {					
+				$.each(tableData, function(index, val) {
+					if(val.key != $select.attr("key")){
+						$('#sel_op'+val.key).hide();
+					}
+				});		
+				event.data.show();		
+			});
+
 			reloadTableData();
 		},
 		renderColumns: function(event, data) {
 			var node = data.node,
 			$tdList = $(node.tr).find(">td");
+
+			var $select = $tdList.eq(4).children().eq(0);
+			$select.hide();
 			// (Index #0 is rendered by fancytree by adding the checkbox)
 			if(!node.folder){
 				if(!node.data.w){
@@ -426,9 +456,9 @@ function treeSetup(){
 				$tdList.eq(3).html('<span id="span_p'+node.key+'" class="span_p">0</span>%');
 
 			}else{
-				$tdList.eq(4).html(" ");
+				//$tdList.eq(4).html(" ");
 			}
-
+			
 		}	
 	}).on("nodeCommand", function(event, data){
 		// Custom event handler that is triggered by keydown-handler and
