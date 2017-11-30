@@ -130,6 +130,10 @@ $(document).ready(function() {
 	});
 
 	$('#btn_newJson').click(function(event) {
+		var tempJSON = $("#tree").fancytree("getTree").options.source;
+		console.log($("#tree").fancytree("getTree"));
+		console.log(tempJSON);
+		$('#pre_JSONinput').text(JSON.stringify(tempJSON, null, 3));
 		$('#showJson').dialog({
 			height: 500,
 			width: 900,
@@ -139,7 +143,12 @@ $(document).ready(function() {
 			modal: true,
 			buttons: {
 				完成: function() {
-					$( this ).dialog( "close" );
+					sourceJSON = eval($('#pre_JSONinput').text());
+					dataSourceType = 2;
+					reloadTree();
+					targetPool = new Array();
+					refreshContainer(targetPool);
+					$(this).dialog("close");
 				}
 			}
 		});
@@ -371,7 +380,6 @@ function treeSetup(){
 			},
 			dragEnter: function(node, data) {
 				// return ["before", "after"];
-				console.log(node);
 				if(node.folder){
 					return true;	
 				}else{

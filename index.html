@@ -148,6 +148,13 @@
 			background: linear-gradient(to bottom, #fceabb 0%,#fccd4d 50%,#f8b500 51%,#fbdf93 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 			filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fceabb', endColorstr='#fbdf93',GradientType=0 ); /* IE6-9 */
 		}
+
+		.div_JSONinput{
+			background-color: rgba(0,0,0,0.02);
+			width: 100%;
+			height: 100%;
+			border: 1px solid lightgray;
+		}
 	</style>
 
 </head>
@@ -186,7 +193,7 @@
 						<col width="120px">
 					</colgroup>
 					<thead>
-					  <tr> <th></th><th>卡片</th> <th class="alignCenter">權重</th> <th class="alignCenter">整體%</th> <th class="alignCenter">操作</th></tr>
+					  <tr> <th></th><th>卡片</th> <th class="alignCenter">權重</th> <th class="alignCenter">整體%</th> <th class="alignCenter"></th></tr>
 					</thead>
 					<tbody>
 					  <!-- Define a row template for all invariant markup: -->
@@ -197,7 +204,7 @@
 					    <td class="alignCenter"></td>
 					    <td class="alignCenter">
 					      <select>
-					        <option value="0">無</option>
+					        <option value="0">操作</option>
 					        <option value="addpool">加入目標池</option>
 					        <option value="removeItem">移出目標池</option>
 					        <!-- <option value="showItemInfo">項目資訊</option> -->
@@ -240,7 +247,7 @@
 	<div id="dialog-confirm" title="重複項目是否計算?"></div>
 	<div id="showResult" title="抽卡統計"></div>
 	<div id="showInfo" title="卡片資訊"></div>
-	<div id="showJson" title="卡池資料"></div>
+	<div id="showJson" title="卡池資料" style="padding:0px;padding-top:0.3em;"><div id="div_JSONinput" class="div_JSONinput" contenteditable="true"><pre id="pre_JSONinput"></pre></div></div>
 <!-- 	<script type="text/x-jquery-tmpl" id="tmplItem">
         <h1>${No}</h1><h2>${Name}</h2><h3>${Score}</h3>
     </script> -->
