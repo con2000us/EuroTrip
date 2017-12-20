@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>test</title>
+	<script
+  src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g=" crossorigin="anonymous"></script>
+	<script src="lib/mersenne-twister.js"></script>
+	<script>
+		var ct;
+		var counter;
+		var interV;
+		var mr;
+		$(document).ready(function($) {
+			interV = 10000;
+			counter = 0;
+			mr = new MersenneTwister();
+			ct = window.setInterval(showRandom, interV);
+		});
+
+		function showRandom(){
+			var past = Date.now();
+			var BrRandom = [0,0];
+			var MrRandom = [0,0];
+			while(Date.now() - past < interV*0.8){
+				if(Math.random()>0.5){
+					BrRandom[0]++;
+				}else{
+					BrRandom[1]++;
+				}
+
+				if(mr.random()>0.5){
+					MrRandom[0]++;
+				}else{
+					MrRandom[1]++;
+				}
+			}
+			counter++;
+
+			var str = 	'<tr>';
+			str +=		'	<td>'+(1-(BrRandom[0]/BrRandom[1]))+'</td>';
+			str +=		'	<td>'+(1-(MrRandom[0]/MrRandom[1]))+'</td>';
+			str +=		'	<td>'+(BrRandom[0]+BrRandom[1])+'</td>';
+			str +=		'</tr>';
+			$('#table_random').append(str);
+
+			if(counter > 10){
+				clearTimeout(ct);
+			}
+			
+		}
+	</script>
+</head>
+<body>
+	<table id="table_random" width="50%">
+		<tr>
+			<td>browser random</td>
+			<td>MersenneTwister</td>
+			<td>simulate time</td>
+		</tr>
+	</table>
+</body>
+</html>

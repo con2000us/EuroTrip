@@ -1,0 +1,14 @@
+[
+	{"title": "大獎", "expanded": true, "folder": true, "children": [
+		{"title": "矢車菊", "img":"1601i.png", "w": 3.33},
+		{"title": "櫻", "img":"1603i.png", "w": 6.33},
+		{"title": "薔薇", "img":"1609i.png", "w": 6.33}
+	]},
+	{"title": "肥婆", "expanded": true, "folder": true, "children": [
+		{"title": "水仙", "img":"1605i.png", "w": 17},
+		{"title": "天堂鳥", "img":"1607i.png", "w": 17},
+		{"title": "鈴蘭", "img":"1611i.png", "w": 17},
+		{"title": "芙蓉", "img":"1613i.png", "w": 16},
+		{"title": "風信子", "img":"1615i.png", "w": 17}
+	]}
+]
