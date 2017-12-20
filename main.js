@@ -130,10 +130,10 @@ $(document).ready(function() {
 	});
 
 	$('#btn_newJson').click(function(event) {
-		var tempJSON = $("#tree").fancytree("getTree").options.source;
-		console.log($("#tree").fancytree("getTree"));
-		console.log(tempJSON);
-		$('#pre_JSONinput').text(JSON.stringify(tempJSON, null, 3));
+		//var tempJSON = $("#tree").fancytree("getTree").options.source;
+		var curJSON = getJsonTree($("#tree").fancytree("getTree").rootNode,true).children
+
+		$('#pre_JSONinput').text(JSON.stringify(curJSON, null, 3));
 		$('#showJson').dialog({
 			height: 500,
 			width: 900,
@@ -322,6 +322,9 @@ function event_binding(){
 			backgraphics.interactive = true;
 			$(this).text('模擬Go');
 			$('#btn_pick').prop('disabled', false);
+
+			var pc = getPosByPerc(50,accuData);
+			detailLine(pc,{'title':'世界線','width':1,'color':'#888888','alpha':0.5});
 			return;				
 		}
 		$(this).text('模擬結束');
@@ -584,6 +587,32 @@ function getList(arrayData, parent, node, level){
 		temp.img = $('#input_w'+node.key).attr("img");
 		arrayData.push(temp);
 	}
+}
+
+function getJsonTree(node,root){
+	var json = new Object();
+	if(!root){
+		json.title = node.title;
+	}
+
+	if(node.data !== null){
+		if(node.data.img != undefined){
+			json.img = node.data.img;
+		}
+		if(node.data.w != undefined){
+			json.w = parseFloat($('#input_w'+node.key).val());
+		}
+	}
+	
+	if(node.children !== null && node.children.length > 0){
+		json.expanded = true;
+		json.folder = true;
+		json.children = new Array();
+		for(var i=0;i<node.children.length;i++){
+			json.children.push(getJsonTree(node.children[i],false));
+		}
+	}
+	return json;
 }
 
 function normalize(){

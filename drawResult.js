@@ -145,8 +145,11 @@ $(document).ready(function() {
 
 	textContainer = new PIXI.Container();
 	overContainer = new PIXI.Container();
+	lineContainer = new PIXI.Container();
 	textContainer.x = 0;
 	textContainer.y = 0;
+
+	lines = new Array();
 	
 	//draw background	
 	backgraphics.beginFill(0xF0F0FF);
@@ -158,6 +161,7 @@ $(document).ready(function() {
 	backgraphics.lineTo(50,dh-50);
 	backgraphics.interactive = false;
 	app.stage.addChild(backgraphics);
+	app.stage.addChild(lineContainer);
 
 	backgraphics.mousemove = function(e) {
 		drawHover(e);
@@ -170,14 +174,6 @@ $(document).ready(function() {
 	backgraphics.touchmove = function(e) {
 		drawHover(e);
 	};
-
-	// backgraphics.on('touchstart', function(e) {
-	// 	drawHover(e);
-	// });
-
-	// backgraphics.on('touchmove', function(e) {
-	// 	drawHover(e);
-	// });
 
 	$('#div_resultCanvas').hide();
 });
@@ -262,11 +258,55 @@ function drawHover(e){
 
 		app.stage.addChild(overHistographics);
 		app.stage.addChild(overContainer);
-
+		app.stage.addChild(lineContainer);
 	}else{
 		overHistographics.clear();
 		while(overContainer.children.length > 0){
 			overContainer.removeChild(overContainer.children[0]);
 		}
 	}	
+}
+
+function getPosByPerc(prec, data){
+	var precData = new Object();
+	precData.prec = prec;
+	precData.targetPoint = data.current*prec/100;
+	var targetPoint = precData.targetPoint;
+	
+	if(targetPoint > data.hist[data.leftBound]){
+		targetPoint -= data.hist[data.leftBound];
+		for(var i=data.leftBound+1;i<data.rightBound;i++){
+			if(targetPoint > data.hist[i]){
+				targetPoint -= data.hist[i];
+			}else{
+				var diffRatio = targetPoint/((data.hist[i]+data.hist[i-1])/2);
+				precData.targetPrec = i-1+diffRatio;
+				precData.targetDraw = Math.round(precData.targetPrec);
+				i = data.rightBound;
+			}
+		}
+	}else{
+		var diffRatio = targetPoint/data.hist[data.leftBound];
+		precData.targetPrec = i-1+diffRatio;
+		precData.targetDraw = Math.round(precData.targetPrec);
+	}
+	return precData;
+}
+
+function clearLines(){
+	$.each(lines, function(index, val) {
+		lineContainer.removeChild(lines);
+	});
+}
+
+function detailLine(precData, lineFormat){
+	var interval = accuData.rightBound - accuData.leftBound;
+	console.log(precData);
+	var curline = new PIXI.Graphics();
+	curline.beginFill(0xF0F0FF,0);
+	curline.lineStyle(lineFormat.width, lineFormat.color, lineFormat.alpha);
+	curline.moveTo(50+(dw-100)*(precData.targetPrec-accuData.leftBound)/interval,50);
+	curline.lineTo(50+(dw-100)*(precData.targetPrec-accuData.leftBound)/interval,dh-50);
+	lineContainer.addChild(curline);
+	app.stage.addChild(curline);
 }
