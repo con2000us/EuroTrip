@@ -220,7 +220,7 @@ function drawHover(e){
 		var overStyle = new PIXI.TextStyle({
 			fontSize: 15,
 			fontFamily: 'Arial',
-			fill: '#cc00ff',
+			fill: '#22aa01',
 			align: 'center',
 			stroke: '#FFFFFF',
 			strokeThickness: 2
@@ -258,7 +258,7 @@ function drawHover(e){
 
 		app.stage.addChild(overHistographics);
 		app.stage.addChild(overContainer);
-		app.stage.addChild(lineContainer);
+		//app.stage.addChild(lineContainer);
 	}else{
 		overHistographics.clear();
 		while(overContainer.children.length > 0){
@@ -301,12 +301,36 @@ function clearLines(){
 
 function detailLine(precData, lineFormat){
 	var interval = accuData.rightBound - accuData.leftBound;
-	console.log(precData);
 	var curline = new PIXI.Graphics();
-	curline.beginFill(0xF0F0FF,0);
+	console.log(precData);
+	//curline.beginFill(0xFF0000,0,0);
 	curline.lineStyle(lineFormat.width, lineFormat.color, lineFormat.alpha);
 	curline.moveTo(50+(dw-100)*(precData.targetPrec-accuData.leftBound)/interval,50);
 	curline.lineTo(50+(dw-100)*(precData.targetPrec-accuData.leftBound)/interval,dh-50);
 	lineContainer.addChild(curline);
-	app.stage.addChild(curline);
+
+	var overStyle = new PIXI.TextStyle({
+		fontSize: 11,
+		fontFamily: 'Arial',
+		fill: '#cc00ff',
+		align: 'center',
+		stroke: '#ffffff',
+		strokeThickness: 2
+	});
+	var percText = new PIXI.Text(lineFormat.title, overStyle);
+	percText.x = 50+(dw-100)*(precData.targetPrec-accuData.leftBound)/interval;
+	percText.y = 35;
+	percText.anchor.x = 0.5;
+	percText.anchor.y = 0.5;
+	percText.resolution = 2;
+	lineContainer.addChild(percText);
+
+	var drawText = new PIXI.Text((Math.round(precData.targetPrec*10)/10)+'抽', overStyle);
+	drawText.x = 50+(dw-100)*(precData.targetPrec-accuData.leftBound)/interval;
+	drawText.y = dh-40;
+	drawText.anchor.x = 0.5;
+	drawText.anchor.y = 0.5;
+	drawText.resolution = 2;
+	lineContainer.addChild(drawText);
+
 }

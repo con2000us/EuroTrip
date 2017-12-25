@@ -279,6 +279,7 @@ function event_binding(){
 		if(targetPool.length == 0){
 			return;
 		}
+		$(this).prop('disabled',true);
 		$('#btn_histo').prop('disabled',true);
 		$('#span_running').hide();
 		$('#div_resultCanvas').hide();
@@ -324,7 +325,7 @@ function event_binding(){
 			$('#btn_pick').prop('disabled', false);
 
 			var pc = getPosByPerc(50,accuData);
-			detailLine(pc,{'title':'世界線','width':1,'color':'#888888','alpha':0.5});
+			detailLine(pc,{'title':'50%世界線','width':1,'color':0xFF3030,'alpha':0.25});
 			return;				
 		}
 		$(this).text('模擬結束');
@@ -354,13 +355,6 @@ function event_binding(){
 		timerID = window.setInterval(slice_hist, 120,100,2000);
 	});
 
-	// $('#btn_reload').click(function(event) {
-	// 	$.when(loadData("data.json")).then(function(){
-	// 		reloadTree();
-	// 		targetPool = new Array();
-	// 		refreshContainer(targetPool);
-	// 	});
-	// });
 }
 
 function treeSetup(){
@@ -1128,6 +1122,9 @@ function showPickAnim(result, sum, step, animTime){
 					Ok: function() {
 						$( this ).dialog( "close" );
 					}
+				},
+				close: function(){
+					$('#btn_pick').prop('disabled',false);
 				}
 			});
 			$('#btn_histo').prop('disabled',false);
@@ -1140,8 +1137,12 @@ function showPickAnim(result, sum, step, animTime){
 					Ok: function() {
 						$( this ).dialog("close");
 					}
+				},
+				close: function(){
+					$('#btn_pick').prop('disabled',false);
 				}
 			});			
 		}
+		
 	}
 }
