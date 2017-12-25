@@ -324,6 +324,7 @@ function event_binding(){
 			$(this).text('模擬Go');
 			$('#btn_pick').prop('disabled', false);
 
+			clearLines();
 			var pc = getPosByPerc(50,accuData);
 			detailLine(pc,{'title':'50%世界線','width':1,'color':0xFF3030,'alpha':0.25});
 			return;				
@@ -736,6 +737,7 @@ function refreshContainer(pool){
 		$('#itemcontainer').append(ele);
 	}
 	interrupt = true;
+	clearLines();
 }
 
 function reloadTableData(){

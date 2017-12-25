@@ -294,15 +294,14 @@ function getPosByPerc(prec, data){
 }
 
 function clearLines(){
-	$.each(lines, function(index, val) {
-		lineContainer.removeChild(lines);
+	$.each(lineContainer.children, function(index, val) {
+		lineContainer.removeChild(val);
 	});
 }
 
 function detailLine(precData, lineFormat){
 	var interval = accuData.rightBound - accuData.leftBound;
 	var curline = new PIXI.Graphics();
-	console.log(precData);
 	//curline.beginFill(0xFF0000,0,0);
 	curline.lineStyle(lineFormat.width, lineFormat.color, lineFormat.alpha);
 	curline.moveTo(50+(dw-100)*(precData.targetPrec-accuData.leftBound)/interval,50);
@@ -323,7 +322,7 @@ function detailLine(precData, lineFormat){
 	percText.anchor.x = 0.5;
 	percText.anchor.y = 0.5;
 	percText.resolution = 2;
-	lineContainer.addChild(percText);
+	curline.addChild(percText);
 
 	var drawText = new PIXI.Text((Math.round(precData.targetPrec*10)/10)+'抽', overStyle);
 	drawText.x = 50+(dw-100)*(precData.targetPrec-accuData.leftBound)/interval;
@@ -331,6 +330,6 @@ function detailLine(precData, lineFormat){
 	drawText.anchor.x = 0.5;
 	drawText.anchor.y = 0.5;
 	drawText.resolution = 2;
-	lineContainer.addChild(drawText);
+	curline.addChild(drawText);
 
 }
