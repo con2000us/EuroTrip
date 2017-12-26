@@ -316,15 +316,14 @@ function event_binding(){
 		if(targetPool.length == 0){
 			return;
 		}
-
+		clearLines();
 		if(accuData != null && accuData.maxTime < 0){
 			clearTimeout(timerID);
 			accuData.maxTime = 0;
 			backgraphics.interactive = true;
 			$(this).text('模擬Go');
 			$('#btn_pick').prop('disabled', false);
-
-			clearLines();
+			
 			var pc = getPosByPerc(50,accuData);
 			detailLine(pc,{'title':'50%世界線','width':1,'color':0xFF3030,'alpha':0.25});
 			return;				
