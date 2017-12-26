@@ -33,6 +33,9 @@ $(document).ready(function() {
 	$('#sel_file').change(function(event) {
 		if($(this).val() !== ''){
 			$.when(loadData($(this).val())).then(function(){
+				$('#span_running').hide();
+				$('#div_resultCanvas').hide();
+				$('#resultcontainerWrapper').hide();
 				dataSourceType = 1;
 				targetPool = new Array();
 				
@@ -46,22 +49,24 @@ $(document).ready(function() {
 
 				ImgData = new Array();
 				ImgDataMap = new Array();
+				promises = new Array();				
 				$.each(tableData, function(index, val) {
 					if(val.exp == 'n' && val.img !== null){
-						toDataURL(val.img, function(dataUrl) {
+						promises[index] = getURL(val.img, function(dataUrl) {
 							imgObj = new Object();
 							imgObj.title = val.title;
 							imgObj.url = val.img;
 							imgObj.b64 = dataUrl;
 							ImgDataMap[imgObj.url] = ImgData.length;
 							ImgData.push(imgObj);
-						})
+						});
 					}
 				});
 
-				$('#span_running').hide();
-				$('#div_resultCanvas').hide();
-				$('#resultcontainerWrapper').hide();
+				Promise.all(promises).then(function(results){
+					$('#btn_par').trigger('click');
+				});
+							
 			});
 		}
 	});
@@ -106,7 +111,6 @@ $(document).ready(function() {
 							});
 						}else{
 							deferred.notify(val.entry);
-							//console.log('going');
 						}
 					});
 				});
@@ -121,6 +125,7 @@ $(document).ready(function() {
 			reloadTree();
 			targetPool = new Array();
 			refreshContainer(targetPool);
+			$('#btn_par').trigger('click');
 		},function(){
 			console.log('沒有Json檔案');								//json data missing...
 		},function(entry){
@@ -130,7 +135,6 @@ $(document).ready(function() {
 	});
 
 	$('#btn_newJson').click(function(event) {
-		//var tempJSON = $("#tree").fancytree("getTree").options.source;
 		var curJSON = getJsonTree($("#tree").fancytree("getTree").rootNode,true).children
 
 		$('#pre_JSONinput').text(JSON.stringify(curJSON, null, 3));
@@ -195,9 +199,10 @@ function init_json(){
 
 	if(dataSourceType == 1){
 		ImgData = new Array();
+		promises = new Array();
 		$.each(tableData, function(index, val) {
 			if(val.exp == 'n' && val.img !== null){
-				toDataURL(val.img, function(dataUrl) {
+				promises[index] = getURL(val.img, function(dataUrl) {
 					imgObj = new Object();
 					imgObj.title = val.title;
 					imgObj.url = val.img;
@@ -209,6 +214,9 @@ function init_json(){
 		});
 	}
 	prepPool = lotteryPrep(tableData);
+	Promise.all(promises).then(function(results){
+		$('#btn_par').trigger('click');
+	});
 }
 
 function reloadTree(){
@@ -1092,6 +1100,27 @@ function toDataURL(url, callback) {
 	xhr.open('GET', url);
 	xhr.responseType = 'blob';
 	xhr.send();
+}
+
+function getURL(url, callback) {
+	return new Promise(function(resolve,reject){
+		var xhr = new XMLHttpRequest();
+		xhr.onload = function() {
+			var reader = new FileReader();
+			reader.onloadend = function() {
+				callback(reader.result);
+				resolve(reader.result);
+			}
+			reader.readAsDataURL(xhr.response);
+		};
+
+		xhr.onerror = function(){
+			reject(new Error(xhr.statusText));
+		}
+		xhr.open('GET', url);
+		xhr.responseType = 'blob';
+		xhr.send();	
+	});	
 }
 
 
