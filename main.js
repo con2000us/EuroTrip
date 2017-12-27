@@ -714,7 +714,7 @@ function makeImgfromBase64(b64){
 
 function makeItemURL(node, extClass){
 	var htmlStr = "";
-	htmlStr += '<div class="div_item" key="'+node.key+'">';
+	htmlStr += '<div class="div_item" key="'+node.key+'" title="'+node.title+'">';
 	//htmlStr += '	<img class ="img_item '+extClass+'" src="'+node.img+'" alt="'+node.title+'">';
 	if(node.exp == 'y'){
 		htmlStr += '	<img class ="img_item '+extClass+'" src="img/folder-icon.png" alt="'+node.title+'">';
@@ -743,7 +743,7 @@ function refreshContainer(pool){
 		ele = $(makeItemURL(pool[i],cssStr));
 		$('#itemcontainer').append(ele);
 		ele.on("click",ele,function(event) {
-			$("#removeItem").text('項目：'+1+'確定刪除?');
+			$("#removeItem").text('確定刪除'+event.data.attr("title")+'?');
 			$("#removeItem").dialog({
 				modal: true,
 				title: '確認視窗',
