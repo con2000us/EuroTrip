@@ -79,9 +79,9 @@ $(document).ready(function() {
 			zipJSON = null;
 			ImgData = new Array();
 			ImgDataMap = new Array();
-			JSZip.loadAsync(f)                                   // 1) read the Blob
+			JSZip.loadAsync(f)
 			.then(function(zip) {
-				zip.forEach(function (relativePath, zipEntry) {  // 2) print entries
+				zip.forEach(function (relativePath, zipEntry){  
 					if(zipEntry.name == 'data.json'){
 						zipJSON = zipEntry;
 					}
@@ -92,7 +92,7 @@ $(document).ready(function() {
 						ImgDataMap[imgObj.url] = ImgData.length;
 						ImgData.push(imgObj);
 						zipImgProc++;
-					}					
+					}
 				});
 
 				if(zipJSON === null){
@@ -664,7 +664,6 @@ function addPool(obj, addType){		// addType : dup(重複計算) / uni(不可重�
 
 	insertToPool(node, targetPool);
 
-
 }
 
 function insertToPool(node, pool){
@@ -715,7 +714,7 @@ function makeImgfromBase64(b64){
 
 function makeItemURL(node, extClass){
 	var htmlStr = "";
-	htmlStr += '<div class="div_item">';
+	htmlStr += '<div class="div_item" key="'+node.key+'">';
 	//htmlStr += '	<img class ="img_item '+extClass+'" src="'+node.img+'" alt="'+node.title+'">';
 	if(node.exp == 'y'){
 		htmlStr += '	<img class ="img_item '+extClass+'" src="img/folder-icon.png" alt="'+node.title+'">';
@@ -724,6 +723,7 @@ function makeItemURL(node, extClass){
 	}else{
 		htmlStr += '	<img class ="img_item '+extClass+'" src="'+ImgData[ImgDataMap[node.img]].b64+'" alt="'+node.title+'">';
 	}
+	//htmlStr += '	<span class="span_itemName">'+node.title+Array(longestStr-node.title.length+1).join('　')+'</span>';
 	htmlStr += '	<span class="span_itemName">'+node.title+'</span>';
 	htmlStr += '</div>';
 
@@ -742,6 +742,20 @@ function refreshContainer(pool){
 		}
 		ele = $(makeItemURL(pool[i],cssStr));
 		$('#itemcontainer').append(ele);
+		ele.on("click",ele,function(event) {
+			$("#removeItem").text('項目：'+1+'確定刪除?');
+			$("#removeItem").dialog({
+				modal: true,
+				title: '確認視窗',
+				buttons: {
+					Ok: function() {
+						removeFromPool({"key":event.data.attr("key")});
+						event.data.remove();
+						$(this).dialog( "close" );
+					}
+				}
+			});
+		});
 	}
 	interrupt = true;
 	clearLines();
@@ -1088,19 +1102,19 @@ function treeNode_command(cmd){
 	}
 }
 
-function toDataURL(url, callback) {
-	var xhr = new XMLHttpRequest();
-	xhr.onload = function() {
-		var reader = new FileReader();
-		reader.onloadend = function() {
-			callback(reader.result);
-		}
-		reader.readAsDataURL(xhr.response);
-	};
-	xhr.open('GET', url);
-	xhr.responseType = 'blob';
-	xhr.send();
-}
+// function toDataURL(url, callback) {
+// 	var xhr = new XMLHttpRequest();
+// 	xhr.onload = function() {
+// 		var reader = new FileReader();
+// 		reader.onloadend = function() {
+// 			callback(reader.result);
+// 		}
+// 		reader.readAsDataURL(xhr.response);
+// 	};
+// 	xhr.open('GET', url);
+// 	xhr.responseType = 'blob';
+// 	xhr.send();
+// }
 
 function getURL(url, callback) {
 	return new Promise(function(resolve,reject){

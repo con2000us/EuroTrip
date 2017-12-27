@@ -105,6 +105,7 @@
 		.div_item{
 			margin: 1.4em;
 			border-radius: 4px;
+			vertical-align: top;
 			display: inline-block;
 			width: 5em;
 		}
@@ -166,6 +167,8 @@
 				<option value="">卡池選擇</option>
 				<option value="kof.json">ToS拳皇卡池</option>
 				<option value="flower.json">ToS荊棘花園卡池</option>
+				<option value="universe.json">ToS宇宙序章卡池</option>
+				<option value="universe_up.json">ToS宇宙序章卡池(提升)</option>
 			</select>
 			<label class="btn btn-default" style="margin-top: 2px;">
 				上傳檔案 <input type="file" id="file" style="display: none;">
@@ -245,6 +248,7 @@
 		<br>		
 	</p>
 	<div id="dialog-confirm" title="重複項目是否計算?"></div>
+	<div id="removeItem" title="確認視窗?"></div>
 	<div id="showResult" title="抽卡統計"></div>
 	<div id="showInfo" title="卡片資訊"></div>
 	<div id="showJson" title="卡池資料" style="padding:0px;padding-top:0.3em;" hidden><div id="div_JSONinput" class="div_JSONinput" contenteditable="true"><pre id="pre_JSONinput"></pre></div></div>
