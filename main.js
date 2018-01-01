@@ -17,7 +17,7 @@ var dataSourceType;		// 1. 從local, 2. 從file
 var ImgData, ImgDataMap;
 var zipJSON, zipImgProc;
 var threadLock,interrupt;
-var init_fold;
+var init_folded;
 var mr;
 
 
@@ -31,7 +31,7 @@ $(document).ready(function() {
 	tablePatten = $('#tree_container').html();
 	threadLock = true;
 	interrupt = false;
-	init_fold = new Array();
+	init_folded = new Array();
 	$('#sel_file').change(function(event) {
 		if($(this).val() !== ''){
 			$.when(loadData($(this).val())).then(function(){
@@ -453,6 +453,9 @@ function treeSetup(){
 				});		
 				event.data.show();		
 			});
+			if(node.data.init_folded){
+				init_folded.push(node);
+			}
 
 			reloadTableData();
 		},
@@ -528,6 +531,10 @@ function treeSetup(){
 				$(that).trigger("nodeCommand", {cmd: ui.cmd});
 			}, 100);
 		}
+	});
+
+	$.each(init_folded, function(index, val) {
+		val.setExpanded(false);
 	});
 }
 
