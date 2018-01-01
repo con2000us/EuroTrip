@@ -958,23 +958,30 @@ function treeNode_command(cmd){
 	switch( cmd ) {
 		case "addpool":
 			var counter = 0;
+			var notfolder = 0;
 			if(node.folder){
-				for(var i=0;i<node.children.length;i++){
-					var nodeW = parseFloat($('#input_w'+node.children[i].key).val());
-					if(nodeW == 0 || isNaN(nodeW)){
-						$("#showResult").text('項目：'+node.children[i].title+'權重設定有誤');
-						$("#showResult").dialog({
-							modal: true,
-							title: '提示',
-							buttons: {
-								Ok: function() {
-									$( this ).dialog( "close" );
-								}
-							}
-						});
-						return;
-					}
-				}
+				console.log(node);
+				console.log(targetPool);
+				// ======================================= fix me!!!!============================================
+				// for(var i=0;i<node.children.length;i++){
+				// 	if(!node.children[i].folder){
+				// 		var nodeW = parseFloat($('#input_w'+node.children[i].key).val());
+				// 		if(nodeW == 0 || isNaN(nodeW)){
+				// 			$("#showResult").text('項目：'+node.children[i].title+'權重設定有誤');
+				// 			$("#showResult").dialog({
+				// 				modal: true,
+				// 				title: '提示',
+				// 				buttons: {
+				// 					Ok: function() {
+				// 						$( this ).dialog( "close" );
+				// 					}
+				// 				}
+				// 			});
+				// 			return;
+				// 		}
+				// 	}
+				// }
+
 			}else{
 				var nodeW = parseFloat($('#input_w'+node.key).val());
 				if(nodeW == 0 || isNaN(nodeW)){
