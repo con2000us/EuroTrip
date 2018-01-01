@@ -1,0 +1,102 @@
+
+[
+	{"title": "墮天", "expanded": true, "folder": true, "init_folded": true, "children": [
+		{"title": "大獎", "expanded": true, "folder": true, "children": [
+			{"title": "撒旦", "img":"img/1244i.png", "w": 3.33},
+			{"title": "切西亞", "img":"img/1236i.png", "w": 6.33},
+			{"title": "亞伯汗", "img":"img/1238i.png", "w": 6.33}
+		]},
+		{"title": "肥婆", "expanded": true, "folder": true, "children": [
+			{"title": "瑰洱", "img":"img/1240i.png", "w": 17},
+			{"title": "帛曳", "img":"img/1242i.png", "w": 17},
+			{"title": "昔拉", "img":"img/1246i.png", "w": 17},
+			{"title": "撒斯姆", "img":"img/1248i.png", "w": 16},
+			{"title": "瑪伊雅彌", "img":"img/1250i.png", "w": 17}
+		]}
+	]},
+	{"title": "三國", "expanded": true, "folder": true, "init_folded": true, "children": [
+		{"title": "大獎", "expanded": true, "folder": true, "children": [
+			{"title": "關羽", "img":"img/1276i.png", "w": 3.33},
+			{"title": "曹操", "img":"img/1278i.png", "w": 6.33},
+			{"title": "呂布", "img":"img/1290i.png", "w": 6.33}
+		]},
+		{"title": "肥婆", "expanded": true, "folder": true, "children": [
+			{"title": "劉備", "img":"img/1280i.png", "w": 17},
+			{"title": "司馬懿", "img":"img/1282i.png", "w": 17},
+			{"title": "諸葛亮", "img":"img/1284i.png", "w": 17},
+			{"title": "孫權", "img":"img/1286i.png", "w": 16},
+			{"title": "大喬與小喬", "img":"img/1288i.png", "w": 17}
+		]}
+	]},
+	{"title": "大和", "expanded": true, "folder": true, "init_folded": true, "children": [
+		{"title": "大獎", "expanded": true, "folder": true, "children": [
+			{"title": "天照", "img":"img/1426i.png", "w": 3.33},
+			{"title": "伊邪那岐", "img":"img/1428i.png", "w": 6.33},
+			{"title": "月讀", "img":"img/1430i.png", "w": 6.33}
+		]},
+		{"title": "肥婆", "expanded": true, "folder": true, "children": [
+			{"title": "須佐之男", "img":"img/1416i.png", "w": 17},
+			{"title": "迦具土", "img":"img/1418i.png", "w": 17},
+			{"title": "稻荷", "img":"img/1420i.png", "w": 17},
+			{"title": "櫛名田", "img":"img/1422i.png", "w": 16},
+			{"title": "伊邪那美", "img":"img/1424i.png", "w": 17}
+		]}
+	]},
+	{"title": "圓桌武士", "expanded": true, "folder": true, "init_folded": true, "children": [
+		{"title": "大獎", "expanded": true, "folder": true, "children": [
+			{"title": "亞瑟", "img":"img/1452i.png", "w": 3.33},
+			{"title": "蘭斯洛特", "img":"img/1454i.png", "w": 6.33},
+			{"title": "梅林", "img":"img/1460i.png", "w": 6.33}
+		]},
+		{"title": "肥婆", "expanded": true, "folder": true, "children": [
+			{"title": "加拉哈德", "img":"img/1446i.png", "w": 17},
+			{"title": "崔斯坦", "img":"img/1448i.png", "w": 17},
+			{"title": "高文", "img":"img/1450i.png", "w": 17},
+			{"title": "貝德維爾", "img":"img/1456i.png", "w": 16},
+			{"title": "加雷斯", "img":"img/1458i.png", "w": 17}
+		]}
+	]},
+	{"title": "武者列傳", "expanded": true, "folder": true, "init_folded": true, "children": [
+		{"title": "大獎", "expanded": true, "folder": true, "children": [
+			{"title": "織田信長", "img":"img/1473i.png", "w": 3.33},
+			{"title": "豐臣秀吉", "img":"img/1475i.png", "w": 6.33},
+			{"title": "本多忠勝", "img":"img/1477i.png", "w": 6.33}
+		]},
+		{"title": "肥婆", "expanded": true, "folder": true, "children": [
+			{"title": "淺井長政", "img":"img/1471i.png", "w": 17},
+			{"title": "稻姬", "img":"img/1479i.png", "w": 17},
+			{"title": "阿市", "img":"img/1481i.png", "w": 17},
+			{"title": "濃姬", "img":"img/1483i.png", "w": 16},
+			{"title": "德川家康", "img":"img/1485i.png", "w": 17}
+		]}
+	]},
+	{"title": "耀脈星芒", "expanded": true, "folder": true, "init_folded": true, "children": [
+		{"title": "大獎", "expanded": true, "folder": true, "children": [
+			{"title": "斯克勒", "img":"img/1540i.png", "w": 3.33},
+			{"title": "安德洛", "img":"img/1536i.png", "w": 6.33},
+			{"title": "琳叩斯", "img":"img/1544i.png", "w": 6.33}
+		]},
+		{"title": "肥婆", "expanded": true, "folder": true, "children": [
+			{"title": "珀耳修", "img":"img/1538i.png", "w": 17},
+			{"title": "米堤與波子", "img":"img/1542i.png", "w": 17},
+			{"title": "希波呂", "img":"img/1546i.png", "w": 17},
+			{"title": "拉冬", "img":"img/1548i.png", "w": 16},
+			{"title": "奧菲斯", "img":"img/1550i.png", "w": 17}
+		]}
+	]},
+	{"title": "妖嬈花夢", "expanded": true, "folder": true, "init_folded": true, "children": [
+		{"title": "大獎", "expanded": true, "folder": true, "children": [
+			{"title": "矢車菊", "img":"img/1601i.png", "w": 3.33},
+			{"title": "櫻", "img":"img/1603i.png", "w": 6.33},
+			{"title": "薔薇", "img":"img/1609i.png", "w": 6.33}
+		]},
+		{"title": "肥婆", "expanded": true, "folder": true, "children": [
+			{"title": "水仙", "img":"img/1605i.png", "w": 17},
+			{"title": "天堂鳥", "img":"img/1607i.png", "w": 17},
+			{"title": "鈴蘭", "img":"img/1611i.png", "w": 17},
+			{"title": "芙蓉", "img":"img/1613i.png", "w": 16},
+			{"title": "風信子", "img":"img/1615i.png", "w": 17}
+		]}
+	]}
+]
+	

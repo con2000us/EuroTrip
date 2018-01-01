@@ -17,6 +17,7 @@ var dataSourceType;		// 1. 從local, 2. 從file
 var ImgData, ImgDataMap;
 var zipJSON, zipImgProc;
 var threadLock,interrupt;
+var init_fold;
 var mr;
 
 
@@ -30,6 +31,7 @@ $(document).ready(function() {
 	tablePatten = $('#tree_container').html();
 	threadLock = true;
 	interrupt = false;
+	init_fold = new Array();
 	$('#sel_file').change(function(event) {
 		if($(this).val() !== ''){
 			$.when(loadData($(this).val())).then(function(){
@@ -468,8 +470,6 @@ function treeSetup(){
 				$tdList.eq(2).html('<input type="input" class="input_data" id= "input_w'+node.key+'" img="'+node.data.img+'" value="' + node.data.w + '" size=\"3\">');
 				$tdList.eq(3).html('<span id="span_p'+node.key+'" class="span_p">0</span>%');
 
-			}else{
-				//$tdList.eq(4).html(" ");
 			}
 			
 		}	
