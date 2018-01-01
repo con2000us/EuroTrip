@@ -3,8 +3,8 @@
 	{"title": "墮天", "expanded": true, "folder": true, "init_folded": true, "children": [
 		{"title": "墮天大獎", "expanded": true, "folder": true, "children": [
 			{"title": "撒旦", "img":"img/1244i.png", "w": 3.33},
-			{"title": "切西亞", "img":"img/1236i.png", "w": 6.33},
-			{"title": "亞伯汗", "img":"img/1238i.png", "w": 6.33}
+			{"title": "切西亞", "img":"img/1238i.png", "w": 6.33},
+			{"title": "亞伯汗", "img":"img/1236i.png", "w": 6.33}
 		]},
 		{"title": "墮天肥婆", "expanded": true, "folder": true, "children": [
 			{"title": "瑰洱", "img":"img/1240i.png", "w": 17},

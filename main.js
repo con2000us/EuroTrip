@@ -960,8 +960,7 @@ function treeNode_command(cmd){
 			var counter = 0;
 			var notfolder = 0;
 			if(node.folder){
-				console.log(node);
-				console.log(targetPool);
+
 				// ======================================= fix me!!!!============================================
 				// for(var i=0;i<node.children.length;i++){
 				// 	if(!node.children[i].folder){
