@@ -160,7 +160,7 @@ $(document).ready(function() {
 		});
 	});
 
-	$('#sel_file').val('kof.json');
+	$('#sel_file').val('newyear.json');
 
 	$.when(loadData($('#sel_file').val())).then(function(){
 		dataSourceType = 1;
