@@ -53,7 +53,7 @@ $(document).ready(function() {
 				ImgDataMap = new Array();
 				promises = new Array();				
 				$.each(tableData, function(index, val) {
-					if(val.exp == 'n' && val.img !== null){
+					if(val.exp == 'n' && val.img !== 'undefined'){
 						promises[index] = getURL(val.img, function(dataUrl) {
 							imgObj = new Object();
 							imgObj.title = val.title;

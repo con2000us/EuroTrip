@@ -1,0 +1,15 @@
+[
+	{"title": "五星", "expanded": true, "folder": true, "children": [
+		{"title": "特別提升", "w": 0.7},
+		{"title": "抽歪從者", "w": 0.3},
+		{"title": "五星禮裝", "w": 4}
+	]},
+	{"title": "四星", "expanded": true, "folder": true, "children": [
+		{"title": "四星從者", "w": 3},
+		{"title": "四星禮裝", "w": 12}
+	]},
+	{"title": "三星", "expanded": true, "folder": true, "children": [
+		{"title": "三星從者", "w": 40},
+		{"title": "三星禮裝", "w": 40}
+	]}
+]
