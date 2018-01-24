@@ -2,11 +2,11 @@
 	{"title": "大獎", "expanded": true, "folder": true, "children": [
 		{"title": "孫策", "img":"img/1671i.png", "w": 7.83},
 		{"title": "祝融", "img":"img/1673i.png", "w": 2.53},
-		{"title": "夏侯惇", "img":"img/1675i.png", "w": 8.3}
+		{"title": "夏侯惇", "img":"img/1679i.png", "w": 8.3}
 	]},
 	{"title": "肥婆", "expanded": true, "folder": true, "children": [
 		{"title": "黃忠", "img":"img/1677i.png", "w": 15},
-		{"title": "陸遜", "img":"img/1679i.png", "w": 15.85},
+		{"title": "陸遜", "img":"img/1675i.png", "w": 15.85},
 		{"title": "蔡文姬", "img":"img/1681i.png", "w": 16.13},
 		{"title": "孟獲", "img":"img/1683i.png", "w": 17.25},
 		{"title": "袁紹", "img":"img/1685i.png", "w": 17.11}
