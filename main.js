@@ -160,7 +160,7 @@ $(document).ready(function() {
 		});
 	});
 
-	$('#sel_file').val('newyear.json');
+	$('#sel_file').val('sango2.json');
 
 	$.when(loadData($('#sel_file').val())).then(function(){
 		dataSourceType = 1;
