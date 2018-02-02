@@ -160,7 +160,7 @@ $(document).ready(function() {
 		});
 	});
 
-	$('#sel_file').val('sango2.json');
+	$('#sel_file').val('sango2_up.json');
 
 	$.when(loadData($('#sel_file').val())).then(function(){
 		dataSourceType = 1;
