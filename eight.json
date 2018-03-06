@@ -1,0 +1,14 @@
+[
+	{"title": "大獎", "expanded": true, "folder": true, "children": [
+		{"title": "血植異足 ‧ 鐵拐李", "img":"img/1703i.png", "w": 2.65},
+		{"title": "菡萏香銷 ‧ 何仙姑", "img":"img/1704i.png", "w": 6.45},
+		{"title": "劍氣御神 ‧ 呂洞賓", "img":"img/1705i.png", "w": 6.26}
+	]},
+	{"title": "肥婆", "expanded": true, "folder": true, "children": [
+		{"title": "笑看紅塵 ‧ 藍采和", "img":"img/1701i.png", "w": 17.47},
+		{"title": "傲骨仙蹤 ‧ 曹國舅", "img":"img/1702i.png", "w": 16.82},
+		{"title": "正陽真人 ‧ 鍾離權", "img":"img/1706i.png", "w": 16.54},
+		{"title": "玩心不盡 ‧ 韓湘子", "img":"img/1578i.png", "w": 16.01},
+		{"title": "滄心童顏 ‧ 張果老", "img":"img/1571i.png", "w": 17.81}
+	]}
+]
