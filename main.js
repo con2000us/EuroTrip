@@ -19,6 +19,7 @@ var zipJSON, zipImgProc;
 var threadLock,interrupt;
 var init_folded;
 var mr;
+var sp;					//保底等特殊運算
 
 
 $(document).ready(function() {
@@ -32,6 +33,7 @@ $(document).ready(function() {
 	threadLock = true;
 	interrupt = false;
 	init_folded = new Array();
+	sp = new Array();
 	$('#sel_file').change(function(event) {
 		if($(this).val() !== ''){
 			$.when(loadData($(this).val())).then(function(){
@@ -160,7 +162,7 @@ $(document).ready(function() {
 		});
 	});
 
-	$('#sel_file').val('eight.json');
+	$('#sel_file').val('cf.json');
 
 	$.when(loadData($('#sel_file').val())).then(function(){
 		dataSourceType = 1;
@@ -312,6 +314,7 @@ function event_binding(){
 				sum += match;
 				tryNum++;
 			}
+			refresh_sp();
 			$('#resultcontainerWrapper').show();
 			// 時差顯示
 			showPickAnim(result, sum, 0, showResult_speed);	
@@ -371,6 +374,7 @@ function treeSetup(){
 	// $('#tree').unbind('nodeCommand');
 	// $('#tree').unbind('keydown');
 	
+	sp = new Array();
 	$("#tree").fancytree({
 		checkbox: false,
 		titlesTabbable: true,     // Add all node titles to TAB chain
@@ -470,12 +474,15 @@ function treeSetup(){
 				if(!node.data.w){
 					node.data.w = 0;
 				}
-				$tdList.eq(2).html('<input type="input" class="input_data" id= "input_w'+node.key+'" img="'+node.data.img+'" value="' + node.data.w + '" size=\"3\">');
+				$tdList.eq(2).html('<input type="input" class="input_data" id= "input_w'+node.key+'" img="'+node.data.img+'" value="' + node.data.w + '" sp="'+node.data.sp+'" size=\"3\">');
 				$tdList.eq(3).html('<span id="span_p'+node.key+'" class="span_p">0</span>%');
 
+				if(node.data.sp != null){
+					sp.push({"sp":node.data.sp,"key":node.key,"count":0});
+				}
 			}
 			
-		}	
+		}
 	}).on("nodeCommand", function(event, data){
 		// Custom event handler that is triggered by keydown-handler and
 		// context menu:
@@ -553,7 +560,6 @@ function getList(arrayData, parent, node, level){
 		if(node.key == 'root_1'){
 			return;
 		}
-
 		//可重複計算的分類
 		tempfolder = new Object();
 		tempfolder.min = min;
@@ -791,20 +797,33 @@ function lotteryPrep(pool){
 
 		}
 	});
-
 	return pPool;
 }
 
-function single_pick(pool){	
-	var L = random()*100;
-	var sum = 0.0;
-	var counter = 0;
-	while(sum < L){
-		sum += pool[counter].p;
-		counter++;
+function single_pick(pool){
+	if(sp.length>0){
+		pr = sp_preproc(sp);
 	}
-	pool[counter-1].index = counter-1;
-	return pool[counter-1];
+	if(pr == 0){
+		var L = random()*100;
+		var sum = 0.0;
+		var counter = 0;
+		while(sum < L){
+			sum += pool[counter].p;
+			counter++;
+		}
+		pool[counter-1].index = counter-1;
+		return pool[counter-1];
+	}else{
+
+		var counter = 0;
+		while(pool[counter].key != pr){
+			sum += pool[counter].p;
+			counter++;
+		}
+		pool[counter].index = counter;
+		return pool[counter];
+	}
 }
 
 function prepMatch(){
@@ -861,6 +880,7 @@ function slice_hist(peroid, loops){
 				}
 				accuData.hist[tryNum]++;
 				accuData.current++;
+				refresh_sp();
 			}
 		}else{
 			for(var i=0;i<loops;i++){			
@@ -872,6 +892,7 @@ function slice_hist(peroid, loops){
 					tryNum++;
 				}
 				accuData.hist[tryNum]++;
+				refresh_sp();
 			}
 			accuData.current += loops;
 		}
@@ -894,7 +915,6 @@ function slice_hist(peroid, loops){
 }
 
 function refreshResult(pool){
-
 	$('#resultcontainer > .div_item').remove();
 
 	for (var i=0; i<pool.length; i++) {
