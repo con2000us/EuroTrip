@@ -805,7 +805,7 @@ function single_pick(pool){
 	if(sp.length>0){
 		pr = sp_preproc(sp);
 	}
-	if(pr == 0){
+	if(sp.length == 0 || pr == 0){
 		var L = random()*100;
 		var sum = 0.0;
 		var counter = 0;
@@ -816,7 +816,6 @@ function single_pick(pool){
 		pool[counter-1].index = counter-1;
 		return pool[counter-1];
 	}else{
-
 		var counter = 0;
 		while(pool[counter].key != pr){
 			sum += pool[counter].p;
