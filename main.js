@@ -479,6 +479,7 @@ function treeSetup(){
 
 				if(node.data.sp != null){
 					sp.push({"sp":node.data.sp,"key":node.key,"count":0});
+					$tdList.eq(5).html('特殊運算:'+node.data.sp);
 				}
 			}
 			
