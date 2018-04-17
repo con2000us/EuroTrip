@@ -279,7 +279,7 @@ function getPosByPerc(prec, data){
 			if(targetPoint > data.hist[i]){
 				targetPoint -= data.hist[i];
 			}else{
-				var diffRatio = targetPoint/((data.hist[i]+data.hist[i-1])/2);
+				var diffRatio = targetPoint/(data.hist[i]);
 				precData.targetPrec = i-1+diffRatio;
 				precData.targetDraw = Math.round(precData.targetPrec);
 				i = data.rightBound;
