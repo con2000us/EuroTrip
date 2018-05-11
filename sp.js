@@ -2,6 +2,7 @@ var draw_buffer;
 var card_cand;
 var card_sum;
 var pom_sum;
+var pom_plus;
 
 function sp_preproc(){
 	for (var i=0; i<sp.length;i++) {
@@ -16,6 +17,7 @@ function sp_preproc(){
 		
 		if(sp[i].sp == "pompeiiMech_40"){
 			if (card_cand == undefined || card_cand.length == 0){
+				pom_plus = [2,4,6,8,10,12,14,16,18,20];
 				card_cand = new Array();
 				card_sum = 0;
 				for(var j=0;j<sp.length;j++){
@@ -38,6 +40,10 @@ function sp_preproc(){
 				draw_buffer[0].countDown = gen_pomLoc();
 				//console.log(pom_sum + ' : 保底的');
 				return draw_buffer[0].key;
+			}else if(draw_buffer[0].countDown <= 9){
+				if(pom_plus[9-draw_buffer[0].countDown] > Math.random()*100){
+					return draw_buffer[0].key;
+				}
 			}
 			if(draw_buffer[1].countDown <= 0){
 				var picked = draw_buffer[1].key;
@@ -65,11 +71,12 @@ function refresh_sp(){
 }
 
 function gen_pomLoc(){
-	var p = 1;
-	while(Math.random()*10>p){
-		p++;
-	}
-	return p+30;
+	// var p = 1;
+	// while(Math.random()*10>p){
+	// 	p++;
+	// }
+	// return p+30;
+	return 40;
 }
 
 function gen_mechLoc(p_loc){
