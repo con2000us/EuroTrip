@@ -221,10 +221,6 @@ function init_json(){
 	Promise.all(promises).then(function(results){
 		$('#btn_par').trigger('click');
 	});
-
-	console.log(sp);
-	console.log(gen_pomLoc());
-	console.log(gen_mechLoc());
 }
 
 function reloadTree(){
