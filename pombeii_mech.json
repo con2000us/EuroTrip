@@ -1,0 +1,64 @@
+[
+   {
+      "title": "黑金",
+      "expanded": true,
+      "folder": true,
+      "children": [
+         {
+            "title": "燃火末日‧龐貝",
+            "img": "pom/pom.png",
+            "w": 0.8,
+            "sp": "pompeiiMech_40"
+         }
+      ]
+   },
+   {
+      "title": "機鎧保底",
+      "expanded": true,
+      "folder": true,
+      "children": [
+         {
+            "title": "機鎧昂揚 ‧ 貝塔",
+            "img": "pom/b.png",
+            "w": 1,
+            "sp": "pomMech_10"
+         },
+         {
+            "title": "機鎧捨身 ‧ 艾普塞朗",
+            "img": "pom/r.png",
+            "w": 1,
+            "sp": "pomMech_10"
+         },
+         {
+            "title": "機鎧構想 ‧ 弗愛",
+            "img": "pom/g.png",
+            "w": 1,
+            "sp": "pomMech_10"
+         },
+         {
+            "title": "機鎧岑寂 ‧ 阿爾法",
+            "img": "pom/l.png",
+            "w": 1,
+            "sp": "pomMech_10"
+         },
+         {
+            "title": "機鎧叛離 ‧ 史納莎",
+            "img": "pom/bl.png",
+            "w": 1,
+            "sp": "pomMech_10"
+         }
+      ]
+   },
+   {
+      "title": "化糞池",
+      "expanded": true,
+      "folder": true,
+      "children": [
+         {
+            "title": "雜魚",
+            "img": "img/undefined.png",
+            "w": 94.2
+         }
+      ]
+   }
+]

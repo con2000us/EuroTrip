@@ -161,8 +161,8 @@ $(document).ready(function() {
 			}
 		});
 	});
-
-	$('#sel_file').val('cf.json');
+	var sec_option = $('#sel_file').children().eq(1).val();
+	$('#sel_file').val(sec_option);
 
 	$.when(loadData($('#sel_file').val())).then(function(){
 		dataSourceType = 1;
@@ -221,6 +221,10 @@ function init_json(){
 	Promise.all(promises).then(function(results){
 		$('#btn_par').trigger('click');
 	});
+
+	console.log(sp);
+	console.log(gen_pomLoc());
+	console.log(gen_mechLoc());
 }
 
 function reloadTree(){
@@ -478,7 +482,7 @@ function treeSetup(){
 				$tdList.eq(3).html('<span id="span_p'+node.key+'" class="span_p">0</span>%');
 
 				if(node.data.sp != null){
-					sp.push({"sp":node.data.sp,"key":node.key,"count":0});
+					sp.push({"sp":node.data.sp,"key":node.key,"count":0,"w":node.data.w});
 					$tdList.eq(5).html('特殊運算:'+node.data.sp);
 				}
 			}
