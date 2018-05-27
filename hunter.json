@@ -1,0 +1,52 @@
+[
+   {
+      "title": "大獎",
+      "expanded": true,
+      "folder": true,
+      "children": [
+         {
+            "title": "小傑",
+            "img": "img/undefined.png",
+            "w": 1,
+            "sp": "hunter_35"
+         },
+         {
+            "title": "奇犽",
+            "img": "img/undefined.png",
+            "w": 4.5
+         },
+         {
+            "title": "酷拉皮卡",
+            "img": "img/undefined.png",
+            "w": 4.5
+         }
+      ]
+   },
+   {
+      "title": "小獎",
+      "expanded": true,
+      "folder": true,
+      "children": [
+         {
+            "title": "比司吉",
+            "img": "img/undefined.png",
+            "w": 22.5
+         },
+         {
+            "title": "西索",
+            "img": "img/undefined.png",
+            "w": 22.5
+         },
+         {
+            "title": "伊耳謎",
+            "img": "img/undefined.png",
+            "w": 22.5
+         },
+         {
+            "title": "雷歐力",
+            "img": "img/undefined.png",
+            "w": 22.5
+         }
+      ]
+   }
+]

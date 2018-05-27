@@ -55,6 +55,18 @@ function sp_preproc(){
 			}
 
 		}
+
+		if(sp[i].sp == "hunter_35"){
+			sp[i].count++;
+			if(sp[i].count >= 35){
+				sp[i].count = 0;
+				return sp[i].key;
+			}else if(sp[i].count >= 26){
+				if((sp[i].count-26)*2+10 > Math.random()*100){
+					return sp[i].key;
+				}
+			}
+		}
 		
 	}
 
@@ -96,4 +108,22 @@ function get_mechCard(){
 		i++;
 	}while(loc>0);
 	return card_cand[i-1].key;
+}
+
+var hunter35 = function(i){
+	
+	sp[i].count++;
+	console.log(sp[i].count);
+	if(sp[i].count >= 34){
+		sp[i].count = 0;
+		console.log('1');
+		return sp[i].key;
+	}else if(sp[i].count >= 24){
+		if((sp[i].count-25)*2+10 > Math.random()*100){
+			console.log('2');
+			return sp[i].key;
+		}
+	}
+	console.log('3');
+	return 0;
 }
