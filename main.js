@@ -34,149 +34,159 @@ $(document).ready(function() {
 	interrupt = false;
 	init_folded = new Array();
 	sp = new Array();
-	$('#sel_file').change(function(event) {
-		if($(this).val() !== ''){
-			$.when(loadData($(this).val())).then(function(){
-				$('#span_running').hide();
-				$('#div_resultCanvas').hide();
-				$('#resultcontainerWrapper').hide();
-				dataSourceType = 1;
-				targetPool = new Array();
-				
-				refreshContainer(targetPool);
-				reloadTree();
 
-				var tree = $("#tree").fancytree("getTree");
-				tableData = new Array();
-				gcount = 0;
-				getList(tableData, "root", tree.rootNode, 0);
+	$.getJSON("data/data.json", function(json) {
 
-				ImgData = new Array();
-				ImgDataMap = new Array();
-				promises = new Array();				
-				$.each(tableData, function(index, val) {
-					if(val.exp == 'n' && val.img !== 'undefined'){
-						promises[index] = getURL(val.img, function(dataUrl) {
-							imgObj = new Object();
-							imgObj.title = val.title;
-							imgObj.url = val.img;
-							imgObj.b64 = dataUrl;
-							ImgDataMap[imgObj.url] = ImgData.length;
-							ImgData.push(imgObj);
-						});
-					}
-				});
+		$.each(json, function(index, val) {
+			$('#sel_file').append('<option value="data/'+val.url+'">'+val.title+'</option>');
+		});
 
-				Promise.all(promises).then(function(results){
-					$('#btn_par').trigger('click');
-				});
-							
-			});
-		}
-	});
-	
-	$("#file").on("change", function(evt) {
-		// Closure to capture the file information.
-		dataSourceType = 2;
-		function handleFile(f) {
-			var deferred = $.Deferred();
-			zipJSON = null;
-			ImgData = new Array();
-			ImgDataMap = new Array();
-			JSZip.loadAsync(f)
-			.then(function(zip) {
-				zip.forEach(function (relativePath, zipEntry){  
-					if(zipEntry.name == 'data.json'){
-						zipJSON = zipEntry;
-					}
-					if(zipEntry.name.match(/(.png)$/g)){
-						imgObj = new Object();
-						imgObj.url = zipEntry.name;
-						imgObj.entry = zipEntry;
-						ImgDataMap[imgObj.url] = ImgData.length;
-						ImgData.push(imgObj);
-						zipImgProc++;
-					}
-				});
+		$('#sel_file').change(function(event) {
+			if($(this).val() !== ''){
+				$.when(loadData($(this).val())).then(function(){
+					$('#span_running').hide();
+					$('#div_resultCanvas').hide();
+					$('#resultcontainerWrapper').hide();
+					dataSourceType = 1;
+					targetPool = new Array();
+					
+					refreshContainer(targetPool);
+					reloadTree();
 
-				if(zipJSON === null){
-					deferred.reject();
-				}
+					var tree = $("#tree").fancytree("getTree");
+					tableData = new Array();
+					gcount = 0;
+					getList(tableData, "root", tree.rootNode, 0);
 
-				$.each(ImgData, function(index, val) {
-					val.entry.async("base64").then(function (b64) {
-						val.b64 = "data:image/png;base64," + b64;
-						zipImgProc--;
-						if(zipImgProc == 0){
-							//$result.append(makeImgfromBase64(ImgData[1].b64));							
-							zipJSON.async("string").then(function (text) {
-								sourceJSON = text;
-								deferred.resolve();
+					ImgData = new Array();
+					ImgDataMap = new Array();
+					promises = new Array();				
+					$.each(tableData, function(index, val) {
+						if(val.exp == 'n' && val.img !== 'undefined'){
+							promises[index] = getURL(val.img, function(dataUrl) {
+								imgObj = new Object();
+								imgObj.title = val.title;
+								imgObj.url = val.img;
+								imgObj.b64 = dataUrl;
+								ImgDataMap[imgObj.url] = ImgData.length;
+								ImgData.push(imgObj);
 							});
-						}else{
-							deferred.notify(val.entry);
 						}
 					});
+
+					Promise.all(promises).then(function(results){
+						$('#btn_par').trigger('click');
+					});
+								
 				});
-
-			}, function (e) {
-
-			});
-			return deferred.promise();
-		}
-		$.when(handleFile(evt.target.files[0])).then(function(){		//unzip finished
-			sourceJSON = eval(sourceJSON);
-			reloadTree();
-			targetPool = new Array();
-			refreshContainer(targetPool);
-			$('#btn_par').trigger('click');
-		},function(){
-			console.log('沒有Json檔案');								//json data missing...
-		},function(entry){
-			//console.log(entry.name);
-			//console.log((ImgData.length-zipImgProc)+'/'+ImgData.length);									//on going
-		});
-	});
-
-	$('#btn_newJson').click(function(event) {
-		var curJSON = getJsonTree($("#tree").fancytree("getTree").rootNode,true).children
-
-		$('#pre_JSONinput').text(JSON.stringify(curJSON, null, 3));
-		$('#showJson').dialog({
-			height: 500,
-			width: 900,
-			title: 'JSON資料欄',
-			resizable: true,
-			draggable: true,
-			modal: true,
-			buttons: {
-				完成: function() {
-					sourceJSON = eval($('#pre_JSONinput').text());
-					dataSourceType = 2;
-					reloadTree();
-					targetPool = new Array();
-					refreshContainer(targetPool);
-					$(this).dialog("close");
-				}
 			}
 		});
-	});
-	var sec_option = $('#sel_file').children().eq(1).val();
-	$('#sel_file').val(sec_option);
+	
+	
+		$("#file").on("change", function(evt) {
+			// Closure to capture the file information.
+			dataSourceType = 2;
+			function handleFile(f) {
+				var deferred = $.Deferred();
+				zipJSON = null;
+				ImgData = new Array();
+				ImgDataMap = new Array();
+				JSZip.loadAsync(f)
+				.then(function(zip) {
+					zip.forEach(function (relativePath, zipEntry){  
+						if(zipEntry.name == 'data.json'){
+							zipJSON = zipEntry;
+						}
+						if(zipEntry.name.match(/(.png)$/g)){
+							imgObj = new Object();
+							imgObj.url = zipEntry.name;
+							imgObj.entry = zipEntry;
+							ImgDataMap[imgObj.url] = ImgData.length;
+							ImgData.push(imgObj);
+							zipImgProc++;
+						}
+					});
 
-	$.when(loadData($('#sel_file').val())).then(function(){
-		dataSourceType = 1;
-		targetPool = new Array();
-		
-		init_json();
-		event_binding();
-		refreshContainer(targetPool);
-		
-		$('#span_running').hide();
-		$('#div_resultCanvas').hide();
-		$('#resultcontainerWrapper').hide();
+					if(zipJSON === null){
+						deferred.reject();
+					}
+
+					$.each(ImgData, function(index, val) {
+						val.entry.async("base64").then(function (b64) {
+							val.b64 = "data:image/png;base64," + b64;
+							zipImgProc--;
+							if(zipImgProc == 0){
+								//$result.append(makeImgfromBase64(ImgData[1].b64));							
+								zipJSON.async("string").then(function (text) {
+									sourceJSON = text;
+									deferred.resolve();
+								});
+							}else{
+								deferred.notify(val.entry);
+							}
+						});
+					});
+
+				}, function (e) {
+
+				});
+				return deferred.promise();
+			}
+			$.when(handleFile(evt.target.files[0])).then(function(){		//unzip finished
+				sourceJSON = eval(sourceJSON);
+				reloadTree();
+				targetPool = new Array();
+				refreshContainer(targetPool);
+				$('#btn_par').trigger('click');
+			},function(){
+				console.log('沒有Json檔案');								//json data missing...
+			},function(entry){
+				//console.log(entry.name);
+				//console.log((ImgData.length-zipImgProc)+'/'+ImgData.length);									//on going
+			});
+		});
+
+		$('#btn_newJson').click(function(event) {
+			var curJSON = getJsonTree($("#tree").fancytree("getTree").rootNode,true).children
+
+			$('#pre_JSONinput').text(JSON.stringify(curJSON, null, 3));
+			$('#showJson').dialog({
+				height: 500,
+				width: 900,
+				title: 'JSON資料欄',
+				resizable: true,
+				draggable: true,
+				modal: true,
+				buttons: {
+					完成: function() {
+						sourceJSON = eval($('#pre_JSONinput').text());
+						dataSourceType = 2;
+						reloadTree();
+						targetPool = new Array();
+						refreshContainer(targetPool);
+						$(this).dialog("close");
+					}
+				}
+			});
+		});
+		var sec_option = $('#sel_file').children().eq(1).val();
+		$('#sel_file').val(sec_option);
+
+		$.when(loadData($('#sel_file').val())).then(function(){
+			dataSourceType = 1;
+			targetPool = new Array();
+			
+			init_json();
+			event_binding();
+			refreshContainer(targetPool);
+			
+			$('#span_running').hide();
+			$('#div_resultCanvas').hide();
+			$('#resultcontainerWrapper').hide();
+		});
+		setInterval(function(){normalize()}, 300);
+
 	});
-	setInterval(function(){normalize()}, 300);
 });
 
 

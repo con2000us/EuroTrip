@@ -6,18 +6,18 @@
       "children": [
          {
             "title": "小傑",
-            "img": "img/undefined.png",
+            "img": "img/hunter1.png",
             "w": 1,
             "sp": "hunter_35"
          },
          {
             "title": "奇犽",
-            "img": "img/undefined.png",
+            "img": "img/hunter2.png",
             "w": 4.5
          },
          {
             "title": "酷拉皮卡",
-            "img": "img/undefined.png",
+            "img": "img/hunter3.png",
             "w": 4.5
          }
       ]
@@ -29,22 +29,22 @@
       "children": [
          {
             "title": "比司吉",
-            "img": "img/undefined.png",
+            "img": "img/hunter4.png",
             "w": 22.5
          },
          {
             "title": "西索",
-            "img": "img/undefined.png",
+            "img": "img/hunter5.png",
             "w": 22.5
          },
          {
             "title": "伊耳謎",
-            "img": "img/undefined.png",
+            "img": "img/hunter6.png",
             "w": 22.5
          },
          {
             "title": "雷歐力",
-            "img": "img/undefined.png",
+            "img": "img/hunter7.png",
             "w": 22.5
          }
       ]

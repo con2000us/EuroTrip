@@ -1,0 +1,15 @@
+[
+	{"title": "ToS獵人卡池"			, "url": "hunter.json"				, "group" : "Tos神魔之塔"},
+	{"title": "ToS龐貝+機鎧卡池"		, "url": "pombeii_mech.json"		, "group" : "Tos神魔之塔"},
+	{"title": "ToS粉碎狂熱卡池"		, "url": "cf.json"					, "group" : "Tos神魔之塔"},
+	{"title": "ToS八仙卡池"			, "url": "eight.json"				, "group" : "Tos神魔之塔"},
+	{"title": "ToS三國戰將卡池"		, "url": "sango2.json"				, "group" : "Tos神魔之塔"},
+	{"title": "ToS三國戰將卡池(提升)"	, "url": "sango2_up.json"			, "group" : "Tos神魔之塔"},
+	{"title": "ToS強者集結卡池"		, "url": "newyear.json"				, "group" : "Tos神魔之塔"},
+	{"title": "ToS拳皇卡池"			, "url": "kof.json"					, "group" : "Tos神魔之塔"},
+	{"title": "ToS荊棘花園卡池"		, "url": "flower.json"				, "group" : "Tos神魔之塔"},
+	{"title": "ToS宇宙序章卡池"		, "url": "universe.json"			, "group" : "Tos神魔之塔"},
+	{"title": "ToS宇宙序章卡池(提升)"	, "url": "universe_up.json"			, "group" : "Tos神魔之塔"},
+	{"title": "FGO通用機率"			, "url": "fgo_general.json"			, "group" : "FGO冠位指定"}	
+]
+
