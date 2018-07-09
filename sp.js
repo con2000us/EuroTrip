@@ -62,7 +62,7 @@ function sp_preproc(){
 				sp[i].count = 0;
 				return sp[i].key;
 			}else if(sp[i].count >= 26){
-				if((sp[i].count-26)*2+5 > Math.random()*100){
+				if((sp[i].count-25)*3+1 > Math.random()*100){
 					return sp[i].key;
 				}
 			}
