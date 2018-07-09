@@ -1,4 +1,5 @@
 [
+	{"title": "ToS幽遊白書卡池"		, "url": "yuyu.json"				, "group" : "Tos神魔之塔"},
 	{"title": "ToS獵人卡池"			, "url": "hunter.json"				, "group" : "Tos神魔之塔"},
 	{"title": "ToS龐貝+機鎧卡池"		, "url": "pombeii_mech.json"		, "group" : "Tos神魔之塔"},
 	{"title": "ToS粉碎狂熱卡池"		, "url": "cf.json"					, "group" : "Tos神魔之塔"},

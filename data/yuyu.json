@@ -1,0 +1,57 @@
+[
+   {
+      "title": "大獎",
+      "expanded": true,
+      "folder": true,
+      "children": [
+         {
+            "title": "浦飯幽助",
+            "img": "img/uu1.png",
+            "w": 1,
+            "sp": "hunter_35"
+         },
+         {
+            "title": "藏馬",
+            "img": "img/uu2.png",
+            "w": 4.5
+         },
+         {
+            "title": "飛影",
+            "img": "img/uu3.png",
+            "w": 4.5
+         }
+      ]
+   },
+   {
+      "title": "小獎",
+      "expanded": true,
+      "folder": true,
+      "children": [
+         {
+            "title": "幻海",
+            "img": "img/uu4.png",
+            "w": 18
+         },
+         {
+            "title": "桑原和真",
+            "img": "img/uu5.png",
+            "w": 18
+         },
+         {
+            "title": "雷禪",
+            "img": "img/uu6.png",
+            "w": 18
+         },
+         {
+            "title": "小閻王",
+            "img": "img/uu7.png",
+            "w": 18
+         },
+         {
+            "title": "戶愚呂兄",
+            "img": "img/uu8.png",
+            "w": 18
+         }
+      ]
+   }
+]
