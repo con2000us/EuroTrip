@@ -1,0 +1,57 @@
+[
+   {
+      "title": "大獎",
+      "expanded": true,
+      "folder": true,
+      "children": [
+         {
+            "title": "梵天",
+            "img": "img/1838i.png",
+            "w": 1,
+            "sp": "hunter_35"
+         },
+         {
+            "title": "濕婆",
+            "img": "img/1836i.png",
+            "w": 4.5
+         },
+         {
+            "title": "毗濕奴",
+            "img": "img/1844i.png",
+            "w": 4.5
+         }
+      ]
+   },
+   {
+      "title": "小獎",
+      "expanded": true,
+      "folder": true,
+      "children": [
+         {
+            "title": "帕爾瓦蒂",
+            "img": "img/1840i.png",
+            "w": 18
+         },
+         {
+            "title": "拉克什米",
+            "img": "img/1842i.png",
+            "w": 18
+         },
+         {
+            "title": "伐樓那",
+            "img": "img/1846i.png",
+            "w": 18
+         },
+         {
+            "title": "阿耆尼",
+            "img": "img/1848i.png",
+            "w": 18
+         },
+         {
+            "title": "伐樓尼",
+            "img": "img/1850i.png",
+            "w": 18
+         }
+      ]
+   }
+]
