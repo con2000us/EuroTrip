@@ -1,5 +1,6 @@
 [
-	{"title": "ToS完美世界卡池"		, "url": "perfect.json"				, "group" : "Tos神魔之塔"},
+	{"title": "ToS美好世界卡池(提升)"	, "url": "perfect_up.json"			, "group" : "Tos神魔之塔"},
+	{"title": "ToS美好世界卡池"		, "url": "perfect.json"				, "group" : "Tos神魔之塔"},
 	{"title": "ToS末世梵音卡池"		, "url": "indian.json"				, "group" : "Tos神魔之塔"},
 	{"title": "ToS幽遊白書卡池"		, "url": "yuyu.json"				, "group" : "Tos神魔之塔"},
 	{"title": "ToS幽遊白書卡池(提升)"	, "url": "yuyu_up.json"				, "group" : "Tos神魔之塔"},
