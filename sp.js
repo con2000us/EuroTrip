@@ -69,6 +69,7 @@ function sp_preproc(){
 		}
 
 		if(sp[i].sp == "warranty"){
+			console.log(spData.max);
 			sp[i].count++;
 			if(sp[i].count >= spData.max){
 				sp[i].count = 0;
