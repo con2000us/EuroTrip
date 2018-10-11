@@ -387,7 +387,7 @@ function treeSetup(){
 	
 	sp = new Array();
 	if(!Array.isArray(sourceJSON)){
-		spData = sourceJSON.spData;
+		spData = eval(sourceJSON.spData);
 		sourceJSON = sourceJSON.data;
 	}
 	$("#tree").fancytree({

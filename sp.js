@@ -67,6 +67,18 @@ function sp_preproc(){
 				}
 			}
 		}
+
+		if(sp[i].sp == "warranty"){
+			sp[i].count++;
+			if(sp[i].count >= spData.max){
+				sp[i].count = 0;
+				return sp[i].key;
+			}else if(sp[i].count >= spData.stepStart){
+				if(spData.step[sp[i].count-spData.stepStart] > Math.random()*100){		//4,7,10,13,16,19,21,24,27,30
+					return sp[i].key;
+				}
+			}
+		}
 		
 	}
 
