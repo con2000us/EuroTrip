@@ -1,57 +1,60 @@
-[
-   {
-      "title": "大獎",
-      "expanded": true,
-      "folder": true,
-      "children": [
-         {
-            "title": "華麗爆裂 ‧ 惠惠",
-            "img": "img/1883i.png",
-            "w": 2.5,
-            "sp": "hunter_35"
-         },
-         {
-            "title": "智障女神 ‧ 阿克婭",
-            "img": "img/1882i.png",
-            "w": 9
-         },
-         {
-            "title": "受辱狂歡 ‧ 達克妮絲",
-            "img": "img/1885i.png",
-            "w": 9
-         }
-      ]
-   },
-   {
-      "title": "小獎",
-      "expanded": true,
-      "folder": true,
-      "children": [
-         {
-            "title": "鬼畜小偷 ‧ 和真",
-            "img": "img/1884i.png",
-            "w": 15.9
-         },
-         {
-            "title": "不變美貌 ‧ 維茲",
-            "img": "img/1886i.png",
-            "w": 15.9
-         },
-         {
-            "title": "魔劍的持有者 ‧ 御劍響夜",
-            "img": "img/1887i.png",
-            "w": 15.9
-         },
-         {
-            "title": "羞澀法師 ‧ 芸芸",
-            "img": "img/1888i.png",
-            "w": 15.9
-         },
-         {
-            "title": "神速盜竊 ‧ 克莉絲",
-            "img": "img/1889i.png",
-            "w": 15.9
-         }
-      ]
-   }
-]
+{
+   "spData": [2,4,6,8,10,12,14,16,18,20,22,24,26,28,30],
+   "data": [
+      {
+         "title": "大獎",
+         "expanded": true,
+         "folder": true,
+         "children": [
+            {
+               "title": "華麗爆裂 ‧ 惠惠",
+               "img": "img/1883i.png",
+               "w": 2.5,
+               "sp": "hunter_35"
+            },
+            {
+               "title": "智障女神 ‧ 阿克婭",
+               "img": "img/1882i.png",
+               "w": 9
+            },
+            {
+               "title": "受辱狂歡 ‧ 達克妮絲",
+               "img": "img/1885i.png",
+               "w": 9
+            }
+         ]
+      },
+      {
+         "title": "小獎",
+         "expanded": true,
+         "folder": true,
+         "children": [
+            {
+               "title": "鬼畜小偷 ‧ 和真",
+               "img": "img/1884i.png",
+               "w": 15.9
+            },
+            {
+               "title": "不變美貌 ‧ 維茲",
+               "img": "img/1886i.png",
+               "w": 15.9
+            },
+            {
+               "title": "魔劍的持有者 ‧ 御劍響夜",
+               "img": "img/1887i.png",
+               "w": 15.9
+            },
+            {
+               "title": "羞澀法師 ‧ 芸芸",
+               "img": "img/1888i.png",
+               "w": 15.9
+            },
+            {
+               "title": "神速盜竊 ‧ 克莉絲",
+               "img": "img/1889i.png",
+               "w": 15.9
+            }
+         ]
+      }
+   ]
+}

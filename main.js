@@ -20,6 +20,7 @@ var threadLock,interrupt;
 var init_folded;
 var mr;
 var sp;					//保底等特殊運算
+var spJson;				//保底等特殊運算附加資料
 
 
 $(document).ready(function() {
@@ -385,6 +386,10 @@ function treeSetup(){
 	// $('#tree').unbind('keydown');
 	
 	sp = new Array();
+	if(!Array.isArray(sourceJSON)){
+		spData = sourceJSON.spData;
+		sourceJSON = sourceJSON.data;
+	}
 	$("#tree").fancytree({
 		checkbox: false,
 		titlesTabbable: true,     // Add all node titles to TAB chain
