@@ -1,0 +1,64 @@
+{
+   "spData": {
+      "max": 35,
+      "stepStart": 26,
+      "step": [2,4,6,8,10,12,14,16,18,20,22,24,26,28,30]
+   },
+   "data": [
+      {
+         "title": "大獎",
+         "expanded": true,
+         "folder": true,
+         "children": [
+            {
+               "title": "零",
+               "img": "img/1927i.png",
+               "w": 1,
+               "sp": "warranty"
+            },
+            {
+               "title": "阿飄",
+               "img": "img/1925i.png",
+               "w": 4.5
+            },
+            {
+               "title": "蜜兒",
+               "img": "img/1929i.png",
+               "w": 4.5
+            }
+         ]
+      },
+      {
+         "title": "小獎",
+         "expanded": true,
+         "folder": true,
+         "children": [
+            {
+               "title": "肉圓",
+               "img": "img/1921i.png",
+               "w": 18
+            },
+            {
+               "title": "高柏飛",
+               "img": "img/1923i.png",
+               "w": 18
+            },
+            {
+               "title": "添哥",
+               "img": "img/1935i.png",
+               "w": 18
+            },
+            {
+               "title": "慌慌",
+               "img": "img/1931i.png",
+               "w": 18
+            },
+            {
+               "title": "泡芙",
+               "img": "img/1933i.png",
+               "w": 18
+            }
+         ]
+      }
+   ]
+}
