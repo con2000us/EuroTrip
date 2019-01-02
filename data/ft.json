@@ -1,0 +1,64 @@
+{
+   "spData": {
+      "max": 35,
+      "stepStart": 26,
+      "step": [2,4,6,8,10,12,14,16,18,20,22,24,26,28,30]
+   },
+   "data": [
+      {
+         "title": "大獎",
+         "expanded": true,
+         "folder": true,
+         "children": [
+            {
+               "title": "火之滅龍魔導士 ‧ 納茲",
+               "img": "img/1956i.png",
+               "w": 1,
+               "sp": "warranty"
+            },
+            {
+               "title": "星靈魔導士 ‧ 露西",
+               "img": "img/1955i.png",
+               "w": 4.5
+            },
+            {
+               "title": "妖精女王 ‧ 艾爾莎",
+               "img": "img/1958i.png",
+               "w": 4.5
+            }
+         ]
+      },
+      {
+         "title": "小獎",
+         "expanded": true,
+         "folder": true,
+         "children": [
+            {
+               "title": "天空的巫女 ‧ 溫蒂",
+               "img": "img/1957i.png",
+               "w": 18
+            },
+            {
+               "title": "鐵影之龍 ‧ 戈吉爾",
+               "img": "img/1959i.png",
+               "w": 18
+            },
+            {
+               "title": "冰之魔導士 ‧ 格雷",
+               "img": "img/1960i.png",
+               "w": 18
+            },
+            {
+               "title": "雷之滅龍魔導士 ‧ 拉格薩斯",
+               "img": "img/1961i.png",
+               "w": 18
+            },
+            {
+               "title": "撒旦之魂 ‧ 米拉珍",
+               "img": "img/1962i.png",
+               "w": 18
+            }
+         ]
+      }
+   ]
+}
