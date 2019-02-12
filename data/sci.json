@@ -1,0 +1,64 @@
+{
+   "spData": {
+      "max": 35,
+      "stepStart": 26,
+      "step": [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
+   },
+   "data": [
+      {
+         "title": "大獎",
+         "expanded": true,
+         "folder": true,
+         "children": [
+            {
+               "title": "愛因斯坦",
+               "img": "img/2006i.png",
+               "w": 1,
+               "sp": "warranty"
+            },
+            {
+               "title": "達爾文",
+               "img": "img/2010i.webp",
+               "w": 4.5
+            },
+            {
+               "title": "伽利略",
+               "img": "img/2014i.webp",
+               "w": 4.5
+            }
+         ]
+      },
+      {
+         "title": "小獎",
+         "expanded": true,
+         "folder": true,
+         "children": [
+            {
+               "title": "牛頓",
+               "img": "img/2008i.webp",
+               "w": 18
+            },
+            {
+               "title": "愛迪生",
+               "img": "img/2012i.webp",
+               "w": 18
+            },
+            {
+               "title": "瑪麗居禮",
+               "img": "img/2016i.webp",
+               "w": 18
+            },
+            {
+               "title": "蘇格拉底",
+               "img": "img/2018i.webp",
+               "w": 18
+            },
+            {
+               "title": "妮可",
+               "img": "img/2020i.png",
+               "w": 18
+            }
+         ]
+      }
+   ]
+}
