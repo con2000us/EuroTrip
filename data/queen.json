@@ -18,12 +18,12 @@
             },
             {
                "title": "武則天",
-               "img": "img/2057i.webp",
+               "img": "img/2057i.png",
                "w": 4.5
             },
             {
                "title": "克麗奧",
-               "img": "img/2059i.webp",
+               "img": "img/2059i.png",
                "w": 4.5
             }
          ]
@@ -35,22 +35,22 @@
          "children": [
             {
                "title": "驪姬",
-               "img": "img/2051i.webp",
+               "img": "img/2051i.png",
                "w": 18
             },
             {
                "title": "龍陽君",
-               "img": "img/2055i.webp",
+               "img": "img/2055i.png",
                "w": 18
             },
             {
                "title": "褒姒",
-               "img": "img/2061i.webp",
+               "img": "img/2061i.png",
                "w": 18
             },
             {
                "title": "楊玉環",
-               "img": "img/2063i.webp",
+               "img": "img/2063i.png",
                "w": 18
             },
             {
