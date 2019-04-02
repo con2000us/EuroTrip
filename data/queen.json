@@ -1,0 +1,64 @@
+{
+   "spData": {
+      "max": 35,
+      "stepStart": 26,
+      "step": [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
+   },
+   "data": [
+      {
+         "title": "大獎",
+         "expanded": true,
+         "folder": true,
+         "children": [
+            {
+               "title": "夏娃",
+               "img": "img/2053i.png",
+               "w": 1,
+               "sp": "warranty"
+            },
+            {
+               "title": "武則天",
+               "img": "img/2057i.webp",
+               "w": 4.5
+            },
+            {
+               "title": "克麗奧",
+               "img": "img/2059i.webp",
+               "w": 4.5
+            }
+         ]
+      },
+      {
+         "title": "小獎",
+         "expanded": true,
+         "folder": true,
+         "children": [
+            {
+               "title": "驪姬",
+               "img": "img/2051i.webp",
+               "w": 18
+            },
+            {
+               "title": "龍陽君",
+               "img": "img/2055i.webp",
+               "w": 18
+            },
+            {
+               "title": "褒姒",
+               "img": "img/2061i.webp",
+               "w": 18
+            },
+            {
+               "title": "楊玉環",
+               "img": "img/2063i.webp",
+               "w": 18
+            },
+            {
+               "title": "妺喜",
+               "img": "img/2065i.png",
+               "w": 18
+            }
+         ]
+      }
+   ]
+}
