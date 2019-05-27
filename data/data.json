@@ -1,4 +1,5 @@
 [
+	{"title": "ToS聖鬥士星矢"		, "url": "stars.json"				, "group" : "Tos神魔之塔"},
 	{"title": "ToS枯骨罪刺"			, "url": "queen.json"				, "group" : "Tos神魔之塔"},
 	{"title": "ToS科學的齒輪卡池"		, "url": "sci.json"					, "group" : "Tos神魔之塔"},
 	{"title": "ToS妖尾之炎卡池"		, "url": "ft.json"					, "group" : "Tos神魔之塔"},

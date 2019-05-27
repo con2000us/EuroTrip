@@ -1,0 +1,64 @@
+{
+   "spData": {
+      "max": 35,
+      "stepStart": 26,
+      "step": [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
+   },
+   "data": [
+      {
+         "title": "大獎",
+         "expanded": true,
+         "folder": true,
+         "children": [
+            {
+               "title": "天馬座 ‧ 星矢",
+               "img": "img/2107i.png",
+               "w": 1,
+               "sp": "warranty"
+            },
+            {
+               "title": "天龍座 ‧ 紫龍",
+               "img": "img/2105i.png",
+               "w": 4.5
+            },
+            {
+               "title": "天鵝座 ‧ 冰河",
+               "img": "img/2101i.png",
+               "w": 4.5
+            }
+         ]
+      },
+      {
+         "title": "小獎",
+         "expanded": true,
+         "folder": true,
+         "children": [
+            {
+               "title": "鳳凰座 ‧ 一輝",
+               "img": "img/2103i.png",
+               "w": 18
+            },
+            {
+               "title": "仙女座 ‧ 瞬",
+               "img": "img/2109i.png",
+               "w": 18
+            },
+            {
+               "title": "水瓶座 ‧ 卡妙",
+               "img": "img/2111i.png",
+               "w": 18
+            },
+            {
+               "title": "摩羯座 ‧ 修羅",
+               "img": "img/2112i.png",
+               "w": 18
+            },
+            {
+               "title": "獅子座 ‧ 艾奧里亞",
+               "img": "img/2113i.png",
+               "w": 18
+            }
+         ]
+      }
+   ]
+}
