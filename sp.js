@@ -80,6 +80,29 @@ function sp_preproc(){
 				}
 			}
 		}
+
+		if(spData.wrap == true){
+			if(spData.pool.length == 0){
+				for(i=0;i<tableData.length;i++){
+					if(tableData[i].exp == "n"){
+						for(j=0;j<Math.floor(tableData[i].w);j++){
+							spData.pool.push(tableData[i].key)
+						}
+					}
+				}
+				
+				//打亂
+				poolNum = spData.pool.length;
+				for(i=0;i<poolNum;i++){
+					excLoc = Math.floor(Math.random()*poolNum);
+					tempEle = spData.pool[excLoc];
+					spData.pool[excLoc] = spData.pool[i];
+					spData.pool[i] = tempEle;
+				}
+			}
+			return spData.pool.pop();
+		}
+		
 		
 	}
 
@@ -93,6 +116,7 @@ function refresh_sp(){
 	}
 	card_cand = new Array();
 	draw_buffer = new Array();
+	spData.pool = [];
 }
 
 function gen_pomLoc(){

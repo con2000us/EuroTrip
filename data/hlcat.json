@@ -1,0 +1,33 @@
+{
+   "spData": {
+      "wrap": true,
+      "pool": []
+   },
+   "data": [
+      {
+         "title": "大獎",
+         "expanded": true,
+         "folder": true,
+         "children": [
+            {
+               "title": "喵喵大將軍 ‧ 虹伶",
+               "img": "img/modcat.png",
+               "w": 1,
+               "sp": "wrap"
+            }
+         ]
+      },
+      {
+         "title": "小獎",
+         "expanded": true,
+         "folder": true,
+         "children": [
+            {
+               "title": "垃圾",
+               "img": "img/undefined.png",
+               "w": 29
+            }
+         ]
+      }
+   ]
+}
